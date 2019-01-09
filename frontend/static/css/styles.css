@@ -1,0 +1,14 @@
+/* CSS Styles */
+
+/* Invoices Table */
+table .invoices-table {
+
+}
+
+li.react-datepicker__time-list-item {
+	height: initial !important; 
+}
+
+.form-group .react-datepicker__input-container, .form-group .react-datepicker-wrapper {
+	display: block !important; 
+}

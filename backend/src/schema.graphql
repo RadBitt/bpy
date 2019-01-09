@@ -1,0 +1,15 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+	createInvoice(
+	clientName: String
+	vesselName: String
+	charterStartDate: String
+	charterEndDate: String
+	totalPrice: Int
+	): Invoice!
+}
+
+type Query {
+	invoices: [Invoice!]
+}

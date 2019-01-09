@@ -1,0 +1,21 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String!
+}
+
+type Invoice {
+	id: ID! @unique
+	clientName: String
+	vesselName: String
+	charterStartDate: String
+	charterEndDate: String
+	totalPrice: Int
+}
+
+type Vessel {
+	id: ID! @unique
+	vesselName: String!
+	weekNightPrice: Int!
+	weekendNightPrice: Int!
+}

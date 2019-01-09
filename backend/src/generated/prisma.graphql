@@ -1,0 +1,938 @@
+# source: http://192.168.99.100:4466/prisma-aws/dev
+# timestamp: Thu Jan 03 2019 03:18:30 GMT-0800 (Pacific Standard Time)
+
+type AggregateInvoice {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type AggregateVessel {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Invoice implements Node {
+  id: ID!
+  clientName: String
+  vesselName: String
+  charterStartDate: String
+  charterEndDate: String
+  totalPrice: Int
+}
+
+"""A connection to a list of items."""
+type InvoiceConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [InvoiceEdge]!
+  aggregate: AggregateInvoice!
+}
+
+input InvoiceCreateInput {
+  clientName: String
+  vesselName: String
+  charterStartDate: String
+  charterEndDate: String
+  totalPrice: Int
+}
+
+"""An edge in a connection."""
+type InvoiceEdge {
+  """The item at the end of the edge."""
+  node: Invoice!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum InvoiceOrderByInput {
+  id_ASC
+  id_DESC
+  clientName_ASC
+  clientName_DESC
+  vesselName_ASC
+  vesselName_DESC
+  charterStartDate_ASC
+  charterStartDate_DESC
+  charterEndDate_ASC
+  charterEndDate_DESC
+  totalPrice_ASC
+  totalPrice_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type InvoicePreviousValues {
+  id: ID!
+  clientName: String
+  vesselName: String
+  charterStartDate: String
+  charterEndDate: String
+  totalPrice: Int
+}
+
+type InvoiceSubscriptionPayload {
+  mutation: MutationType!
+  node: Invoice
+  updatedFields: [String!]
+  previousValues: InvoicePreviousValues
+}
+
+input InvoiceSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InvoiceSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InvoiceSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InvoiceSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: InvoiceWhereInput
+}
+
+input InvoiceUpdateInput {
+  clientName: String
+  vesselName: String
+  charterStartDate: String
+  charterEndDate: String
+  totalPrice: Int
+}
+
+input InvoiceUpdateManyMutationInput {
+  clientName: String
+  vesselName: String
+  charterStartDate: String
+  charterEndDate: String
+  totalPrice: Int
+}
+
+input InvoiceWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InvoiceWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InvoiceWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InvoiceWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  clientName: String
+
+  """All values that are not equal to given value."""
+  clientName_not: String
+
+  """All values that are contained in given list."""
+  clientName_in: [String!]
+
+  """All values that are not contained in given list."""
+  clientName_not_in: [String!]
+
+  """All values less than the given value."""
+  clientName_lt: String
+
+  """All values less than or equal the given value."""
+  clientName_lte: String
+
+  """All values greater than the given value."""
+  clientName_gt: String
+
+  """All values greater than or equal the given value."""
+  clientName_gte: String
+
+  """All values containing the given string."""
+  clientName_contains: String
+
+  """All values not containing the given string."""
+  clientName_not_contains: String
+
+  """All values starting with the given string."""
+  clientName_starts_with: String
+
+  """All values not starting with the given string."""
+  clientName_not_starts_with: String
+
+  """All values ending with the given string."""
+  clientName_ends_with: String
+
+  """All values not ending with the given string."""
+  clientName_not_ends_with: String
+  vesselName: String
+
+  """All values that are not equal to given value."""
+  vesselName_not: String
+
+  """All values that are contained in given list."""
+  vesselName_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselName_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselName_lt: String
+
+  """All values less than or equal the given value."""
+  vesselName_lte: String
+
+  """All values greater than the given value."""
+  vesselName_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselName_gte: String
+
+  """All values containing the given string."""
+  vesselName_contains: String
+
+  """All values not containing the given string."""
+  vesselName_not_contains: String
+
+  """All values starting with the given string."""
+  vesselName_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselName_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselName_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselName_not_ends_with: String
+  charterStartDate: String
+
+  """All values that are not equal to given value."""
+  charterStartDate_not: String
+
+  """All values that are contained in given list."""
+  charterStartDate_in: [String!]
+
+  """All values that are not contained in given list."""
+  charterStartDate_not_in: [String!]
+
+  """All values less than the given value."""
+  charterStartDate_lt: String
+
+  """All values less than or equal the given value."""
+  charterStartDate_lte: String
+
+  """All values greater than the given value."""
+  charterStartDate_gt: String
+
+  """All values greater than or equal the given value."""
+  charterStartDate_gte: String
+
+  """All values containing the given string."""
+  charterStartDate_contains: String
+
+  """All values not containing the given string."""
+  charterStartDate_not_contains: String
+
+  """All values starting with the given string."""
+  charterStartDate_starts_with: String
+
+  """All values not starting with the given string."""
+  charterStartDate_not_starts_with: String
+
+  """All values ending with the given string."""
+  charterStartDate_ends_with: String
+
+  """All values not ending with the given string."""
+  charterStartDate_not_ends_with: String
+  charterEndDate: String
+
+  """All values that are not equal to given value."""
+  charterEndDate_not: String
+
+  """All values that are contained in given list."""
+  charterEndDate_in: [String!]
+
+  """All values that are not contained in given list."""
+  charterEndDate_not_in: [String!]
+
+  """All values less than the given value."""
+  charterEndDate_lt: String
+
+  """All values less than or equal the given value."""
+  charterEndDate_lte: String
+
+  """All values greater than the given value."""
+  charterEndDate_gt: String
+
+  """All values greater than or equal the given value."""
+  charterEndDate_gte: String
+
+  """All values containing the given string."""
+  charterEndDate_contains: String
+
+  """All values not containing the given string."""
+  charterEndDate_not_contains: String
+
+  """All values starting with the given string."""
+  charterEndDate_starts_with: String
+
+  """All values not starting with the given string."""
+  charterEndDate_not_starts_with: String
+
+  """All values ending with the given string."""
+  charterEndDate_ends_with: String
+
+  """All values not ending with the given string."""
+  charterEndDate_not_ends_with: String
+  totalPrice: Int
+
+  """All values that are not equal to given value."""
+  totalPrice_not: Int
+
+  """All values that are contained in given list."""
+  totalPrice_in: [Int!]
+
+  """All values that are not contained in given list."""
+  totalPrice_not_in: [Int!]
+
+  """All values less than the given value."""
+  totalPrice_lt: Int
+
+  """All values less than or equal the given value."""
+  totalPrice_lte: Int
+
+  """All values greater than the given value."""
+  totalPrice_gt: Int
+
+  """All values greater than or equal the given value."""
+  totalPrice_gte: Int
+}
+
+input InvoiceWhereUniqueInput {
+  id: ID
+}
+
+"""Raw JSON value"""
+scalar Json
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createInvoice(data: InvoiceCreateInput!): Invoice!
+  createVessel(data: VesselCreateInput!): Vessel!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateInvoice(data: InvoiceUpdateInput!, where: InvoiceWhereUniqueInput!): Invoice
+  updateVessel(data: VesselUpdateInput!, where: VesselWhereUniqueInput!): Vessel
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteInvoice(where: InvoiceWhereUniqueInput!): Invoice
+  deleteVessel(where: VesselWhereUniqueInput!): Vessel
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertInvoice(where: InvoiceWhereUniqueInput!, create: InvoiceCreateInput!, update: InvoiceUpdateInput!): Invoice!
+  upsertVessel(where: VesselWhereUniqueInput!, create: VesselCreateInput!, update: VesselUpdateInput!): Vessel!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyInvoices(data: InvoiceUpdateManyMutationInput!, where: InvoiceWhereInput): BatchPayload!
+  updateManyVessels(data: VesselUpdateManyMutationInput!, where: VesselWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyInvoices(where: InvoiceWhereInput): BatchPayload!
+  deleteManyVessels(where: VesselWhereInput): BatchPayload!
+  executeRaw(database: PrismaDatabase, query: String!): Json!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+enum PrismaDatabase {
+  default
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
+  vessels(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vessel]!
+  user(where: UserWhereUniqueInput!): User
+  invoice(where: InvoiceWhereUniqueInput!): Invoice
+  vessel(where: VesselWhereUniqueInput!): Vessel
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  invoicesConnection(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InvoiceConnection!
+  vesselsConnection(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VesselConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  invoice(where: InvoiceSubscriptionWhereInput): InvoiceSubscriptionPayload
+  vessel(where: VesselSubscriptionWhereInput): VesselSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  name: String!
+  email: String!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+}
+
+input UserWhereUniqueInput {
+  id: ID
+}
+
+type Vessel implements Node {
+  id: ID!
+  vesselName: String!
+  weekNightPrice: Int!
+  weekendNightPrice: Int!
+}
+
+"""A connection to a list of items."""
+type VesselConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [VesselEdge]!
+  aggregate: AggregateVessel!
+}
+
+input VesselCreateInput {
+  vesselName: String!
+  weekNightPrice: Int!
+  weekendNightPrice: Int!
+}
+
+"""An edge in a connection."""
+type VesselEdge {
+  """The item at the end of the edge."""
+  node: Vessel!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum VesselOrderByInput {
+  id_ASC
+  id_DESC
+  vesselName_ASC
+  vesselName_DESC
+  weekNightPrice_ASC
+  weekNightPrice_DESC
+  weekendNightPrice_ASC
+  weekendNightPrice_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type VesselPreviousValues {
+  id: ID!
+  vesselName: String!
+  weekNightPrice: Int!
+  weekendNightPrice: Int!
+}
+
+type VesselSubscriptionPayload {
+  mutation: MutationType!
+  node: Vessel
+  updatedFields: [String!]
+  previousValues: VesselPreviousValues
+}
+
+input VesselSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [VesselSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [VesselSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [VesselSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: VesselWhereInput
+}
+
+input VesselUpdateInput {
+  vesselName: String
+  weekNightPrice: Int
+  weekendNightPrice: Int
+}
+
+input VesselUpdateManyMutationInput {
+  vesselName: String
+  weekNightPrice: Int
+  weekendNightPrice: Int
+}
+
+input VesselWhereInput {
+  """Logical AND on all given filters."""
+  AND: [VesselWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [VesselWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [VesselWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  vesselName: String
+
+  """All values that are not equal to given value."""
+  vesselName_not: String
+
+  """All values that are contained in given list."""
+  vesselName_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselName_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselName_lt: String
+
+  """All values less than or equal the given value."""
+  vesselName_lte: String
+
+  """All values greater than the given value."""
+  vesselName_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselName_gte: String
+
+  """All values containing the given string."""
+  vesselName_contains: String
+
+  """All values not containing the given string."""
+  vesselName_not_contains: String
+
+  """All values starting with the given string."""
+  vesselName_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselName_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselName_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselName_not_ends_with: String
+  weekNightPrice: Int
+
+  """All values that are not equal to given value."""
+  weekNightPrice_not: Int
+
+  """All values that are contained in given list."""
+  weekNightPrice_in: [Int!]
+
+  """All values that are not contained in given list."""
+  weekNightPrice_not_in: [Int!]
+
+  """All values less than the given value."""
+  weekNightPrice_lt: Int
+
+  """All values less than or equal the given value."""
+  weekNightPrice_lte: Int
+
+  """All values greater than the given value."""
+  weekNightPrice_gt: Int
+
+  """All values greater than or equal the given value."""
+  weekNightPrice_gte: Int
+  weekendNightPrice: Int
+
+  """All values that are not equal to given value."""
+  weekendNightPrice_not: Int
+
+  """All values that are contained in given list."""
+  weekendNightPrice_in: [Int!]
+
+  """All values that are not contained in given list."""
+  weekendNightPrice_not_in: [Int!]
+
+  """All values less than the given value."""
+  weekendNightPrice_lt: Int
+
+  """All values less than or equal the given value."""
+  weekendNightPrice_lte: Int
+
+  """All values greater than the given value."""
+  weekendNightPrice_gt: Int
+
+  """All values greater than or equal the given value."""
+  weekendNightPrice_gte: Int
+}
+
+input VesselWhereUniqueInput {
+  id: ID
+}
