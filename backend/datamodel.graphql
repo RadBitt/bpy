@@ -18,4 +18,17 @@ type Vessel {
 	vesselName: String!
 	weekNightPrice: Int!
 	weekendNightPrice: Int!
+	vesselOwner: String
 }
+
+type Class {
+	id: ID! @unique
+	className: String!
+	classPrice: Int!
+	classDays: Int!
+	classDate: String!
+	vesselID: String!
+	participants: Int
+}
+
+
