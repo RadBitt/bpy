@@ -4,6 +4,7 @@ import Router from 'next/router';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import VesselOptionList from './queries/VesselOptionList';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
@@ -120,17 +121,12 @@ class CreateInvoice extends React.Component {
 					</div>
 					<div className="form-group">
 					    <label htmlFor="vesselName">Select Charter Vessel</label>
-					    <select 
-					    	className="form-control" 
+					      <VesselOptionList className="form-control" 
 					    	id="vesselName"
 					    	name="vesselName"
-					    	required
 					    	value={this.state.vesselName}
 					    	onChange={this.handleChange}
-					    >
-					      <option defaultValue value="Yoda">Yoda</option>
-					      <option value="Bay Sailor">Bay Sailor</option>
-					    </select>
+					    />
 				 	</div>
 				 	<div className="form-group">
 					    <label htmlFor="charterStartDate">Charter Start Date</label>

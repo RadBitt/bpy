@@ -2,14 +2,28 @@
 
 type Mutation {
 	createInvoice(
-	clientName: String
-	vesselName: String
-	charterStartDate: String
-	charterEndDate: String
-	totalPrice: Int
+		clientName: String
+		vesselName: String
+		charterStartDate: String
+		charterEndDate: String
+		totalPrice: Int
 	): Invoice!
+}
+
+type Mutation {
+	createVessel(
+		vesselName: String
+		weekNightPrice: Int
+		weekendNightPrice: Int
+		vesselOwner: String
+		vesselOwnerEmail: String
+	): Vessel!
 }
 
 type Query {
 	invoices: [Invoice!]
+}
+
+type Query {
+	vessels: [Vessel!]
 }

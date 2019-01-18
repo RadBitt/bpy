@@ -6,14 +6,15 @@ const Mutations = {
 			}
 		}, info);
 		return invoice;
+	},
+	async createVessel(parent, args, ctx, info) {
+		const vessel = await ctx.db.mutation.createVessel({
+			data: {
+				...args
+			}
+		}, info);
+		return vessel;
 	}
-	// createDog(parent, args, ctx, info) {
-	// 	global.dogs = global.dogs || [];
-
-	// 	const newDog = {name: args.name};
-	// 	global.dogs.push(newDog);
-	// 	return newDog;
-	// }
 };
 
 module.exports = Mutations;

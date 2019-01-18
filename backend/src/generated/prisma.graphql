@@ -1,5 +1,9 @@
-# source: http://192.168.99.100:4466/prisma-aws/dev
-# timestamp: Thu Jan 03 2019 03:18:30 GMT-0800 (Pacific Standard Time)
+# source: https://us1.prisma.sh/leonardo-m-hernandez/bpy-desktop-mysql/dev
+# timestamp: Wed Jan 16 2019 20:40:24 GMT-0800 (Pacific Standard Time)
+
+type AggregateClass {
+  count: Int!
+}
 
 type AggregateInvoice {
   count: Int!
@@ -16,6 +20,373 @@ type AggregateVessel {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type Class implements Node {
+  id: ID!
+  className: String!
+  classPrice: Int!
+  classDays: Int!
+  classDate: String!
+  vesselID: String!
+  participants: Int
+}
+
+"""A connection to a list of items."""
+type ClassConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ClassEdge]!
+  aggregate: AggregateClass!
+}
+
+input ClassCreateInput {
+  className: String!
+  classPrice: Int!
+  classDays: Int!
+  classDate: String!
+  vesselID: String!
+  participants: Int
+}
+
+"""An edge in a connection."""
+type ClassEdge {
+  """The item at the end of the edge."""
+  node: Class!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ClassOrderByInput {
+  id_ASC
+  id_DESC
+  className_ASC
+  className_DESC
+  classPrice_ASC
+  classPrice_DESC
+  classDays_ASC
+  classDays_DESC
+  classDate_ASC
+  classDate_DESC
+  vesselID_ASC
+  vesselID_DESC
+  participants_ASC
+  participants_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ClassPreviousValues {
+  id: ID!
+  className: String!
+  classPrice: Int!
+  classDays: Int!
+  classDate: String!
+  vesselID: String!
+  participants: Int
+}
+
+type ClassSubscriptionPayload {
+  mutation: MutationType!
+  node: Class
+  updatedFields: [String!]
+  previousValues: ClassPreviousValues
+}
+
+input ClassSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ClassSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ClassSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ClassSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ClassWhereInput
+}
+
+input ClassUpdateInput {
+  className: String
+  classPrice: Int
+  classDays: Int
+  classDate: String
+  vesselID: String
+  participants: Int
+}
+
+input ClassUpdateManyMutationInput {
+  className: String
+  classPrice: Int
+  classDays: Int
+  classDate: String
+  vesselID: String
+  participants: Int
+}
+
+input ClassWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ClassWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ClassWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ClassWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  className: String
+
+  """All values that are not equal to given value."""
+  className_not: String
+
+  """All values that are contained in given list."""
+  className_in: [String!]
+
+  """All values that are not contained in given list."""
+  className_not_in: [String!]
+
+  """All values less than the given value."""
+  className_lt: String
+
+  """All values less than or equal the given value."""
+  className_lte: String
+
+  """All values greater than the given value."""
+  className_gt: String
+
+  """All values greater than or equal the given value."""
+  className_gte: String
+
+  """All values containing the given string."""
+  className_contains: String
+
+  """All values not containing the given string."""
+  className_not_contains: String
+
+  """All values starting with the given string."""
+  className_starts_with: String
+
+  """All values not starting with the given string."""
+  className_not_starts_with: String
+
+  """All values ending with the given string."""
+  className_ends_with: String
+
+  """All values not ending with the given string."""
+  className_not_ends_with: String
+  classPrice: Int
+
+  """All values that are not equal to given value."""
+  classPrice_not: Int
+
+  """All values that are contained in given list."""
+  classPrice_in: [Int!]
+
+  """All values that are not contained in given list."""
+  classPrice_not_in: [Int!]
+
+  """All values less than the given value."""
+  classPrice_lt: Int
+
+  """All values less than or equal the given value."""
+  classPrice_lte: Int
+
+  """All values greater than the given value."""
+  classPrice_gt: Int
+
+  """All values greater than or equal the given value."""
+  classPrice_gte: Int
+  classDays: Int
+
+  """All values that are not equal to given value."""
+  classDays_not: Int
+
+  """All values that are contained in given list."""
+  classDays_in: [Int!]
+
+  """All values that are not contained in given list."""
+  classDays_not_in: [Int!]
+
+  """All values less than the given value."""
+  classDays_lt: Int
+
+  """All values less than or equal the given value."""
+  classDays_lte: Int
+
+  """All values greater than the given value."""
+  classDays_gt: Int
+
+  """All values greater than or equal the given value."""
+  classDays_gte: Int
+  classDate: String
+
+  """All values that are not equal to given value."""
+  classDate_not: String
+
+  """All values that are contained in given list."""
+  classDate_in: [String!]
+
+  """All values that are not contained in given list."""
+  classDate_not_in: [String!]
+
+  """All values less than the given value."""
+  classDate_lt: String
+
+  """All values less than or equal the given value."""
+  classDate_lte: String
+
+  """All values greater than the given value."""
+  classDate_gt: String
+
+  """All values greater than or equal the given value."""
+  classDate_gte: String
+
+  """All values containing the given string."""
+  classDate_contains: String
+
+  """All values not containing the given string."""
+  classDate_not_contains: String
+
+  """All values starting with the given string."""
+  classDate_starts_with: String
+
+  """All values not starting with the given string."""
+  classDate_not_starts_with: String
+
+  """All values ending with the given string."""
+  classDate_ends_with: String
+
+  """All values not ending with the given string."""
+  classDate_not_ends_with: String
+  vesselID: String
+
+  """All values that are not equal to given value."""
+  vesselID_not: String
+
+  """All values that are contained in given list."""
+  vesselID_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselID_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselID_lt: String
+
+  """All values less than or equal the given value."""
+  vesselID_lte: String
+
+  """All values greater than the given value."""
+  vesselID_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselID_gte: String
+
+  """All values containing the given string."""
+  vesselID_contains: String
+
+  """All values not containing the given string."""
+  vesselID_not_contains: String
+
+  """All values starting with the given string."""
+  vesselID_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselID_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselID_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselID_not_ends_with: String
+  participants: Int
+
+  """All values that are not equal to given value."""
+  participants_not: Int
+
+  """All values that are contained in given list."""
+  participants_in: [Int!]
+
+  """All values that are not contained in given list."""
+  participants_not_in: [Int!]
+
+  """All values less than the given value."""
+  participants_lt: Int
+
+  """All values less than or equal the given value."""
+  participants_lte: Int
+
+  """All values greater than the given value."""
+  participants_gt: Int
+
+  """All values greater than or equal the given value."""
+  participants_gte: Int
+}
+
+input ClassWhereUniqueInput {
+  id: ID
 }
 
 type Invoice implements Node {
@@ -374,9 +745,6 @@ input InvoiceWhereUniqueInput {
   id: ID
 }
 
-"""Raw JSON value"""
-scalar Json
-
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
 Long can represent values between -(2^63) and 2^63 - 1.
@@ -387,22 +755,27 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createInvoice(data: InvoiceCreateInput!): Invoice!
   createVessel(data: VesselCreateInput!): Vessel!
+  createClass(data: ClassCreateInput!): Class!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateInvoice(data: InvoiceUpdateInput!, where: InvoiceWhereUniqueInput!): Invoice
   updateVessel(data: VesselUpdateInput!, where: VesselWhereUniqueInput!): Vessel
+  updateClass(data: ClassUpdateInput!, where: ClassWhereUniqueInput!): Class
   deleteUser(where: UserWhereUniqueInput!): User
   deleteInvoice(where: InvoiceWhereUniqueInput!): Invoice
   deleteVessel(where: VesselWhereUniqueInput!): Vessel
+  deleteClass(where: ClassWhereUniqueInput!): Class
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertInvoice(where: InvoiceWhereUniqueInput!, create: InvoiceCreateInput!, update: InvoiceUpdateInput!): Invoice!
   upsertVessel(where: VesselWhereUniqueInput!, create: VesselCreateInput!, update: VesselUpdateInput!): Vessel!
+  upsertClass(where: ClassWhereUniqueInput!, create: ClassCreateInput!, update: ClassUpdateInput!): Class!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyInvoices(data: InvoiceUpdateManyMutationInput!, where: InvoiceWhereInput): BatchPayload!
   updateManyVessels(data: VesselUpdateManyMutationInput!, where: VesselWhereInput): BatchPayload!
+  updateManyClasses(data: ClassUpdateManyMutationInput!, where: ClassWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyInvoices(where: InvoiceWhereInput): BatchPayload!
   deleteManyVessels(where: VesselWhereInput): BatchPayload!
-  executeRaw(database: PrismaDatabase, query: String!): Json!
+  deleteManyClasses(where: ClassWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -432,20 +805,19 @@ type PageInfo {
   endCursor: String
 }
 
-enum PrismaDatabase {
-  default
-}
-
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
   vessels(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vessel]!
+  classes(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class]!
   user(where: UserWhereUniqueInput!): User
   invoice(where: InvoiceWhereUniqueInput!): Invoice
   vessel(where: VesselWhereUniqueInput!): Vessel
+  class(where: ClassWhereUniqueInput!): Class
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   invoicesConnection(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InvoiceConnection!
   vesselsConnection(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VesselConnection!
+  classesConnection(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClassConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -458,6 +830,7 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   invoice(where: InvoiceSubscriptionWhereInput): InvoiceSubscriptionPayload
   vessel(where: VesselSubscriptionWhereInput): VesselSubscriptionPayload
+  class(where: ClassSubscriptionWhereInput): ClassSubscriptionPayload
 }
 
 type User implements Node {
@@ -698,6 +1071,8 @@ type Vessel implements Node {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
+  vesselOwner: String
+  vesselOwnerEmail: String
 }
 
 """A connection to a list of items."""
@@ -714,6 +1089,8 @@ input VesselCreateInput {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
+  vesselOwner: String
+  vesselOwnerEmail: String
 }
 
 """An edge in a connection."""
@@ -734,6 +1111,10 @@ enum VesselOrderByInput {
   weekNightPrice_DESC
   weekendNightPrice_ASC
   weekendNightPrice_DESC
+  vesselOwner_ASC
+  vesselOwner_DESC
+  vesselOwnerEmail_ASC
+  vesselOwnerEmail_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -745,6 +1126,8 @@ type VesselPreviousValues {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
+  vesselOwner: String
+  vesselOwnerEmail: String
 }
 
 type VesselSubscriptionPayload {
@@ -790,12 +1173,16 @@ input VesselUpdateInput {
   vesselName: String
   weekNightPrice: Int
   weekendNightPrice: Int
+  vesselOwner: String
+  vesselOwnerEmail: String
 }
 
 input VesselUpdateManyMutationInput {
   vesselName: String
   weekNightPrice: Int
   weekendNightPrice: Int
+  vesselOwner: String
+  vesselOwnerEmail: String
 }
 
 input VesselWhereInput {
@@ -931,6 +1318,86 @@ input VesselWhereInput {
 
   """All values greater than or equal the given value."""
   weekendNightPrice_gte: Int
+  vesselOwner: String
+
+  """All values that are not equal to given value."""
+  vesselOwner_not: String
+
+  """All values that are contained in given list."""
+  vesselOwner_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselOwner_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselOwner_lt: String
+
+  """All values less than or equal the given value."""
+  vesselOwner_lte: String
+
+  """All values greater than the given value."""
+  vesselOwner_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselOwner_gte: String
+
+  """All values containing the given string."""
+  vesselOwner_contains: String
+
+  """All values not containing the given string."""
+  vesselOwner_not_contains: String
+
+  """All values starting with the given string."""
+  vesselOwner_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselOwner_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselOwner_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselOwner_not_ends_with: String
+  vesselOwnerEmail: String
+
+  """All values that are not equal to given value."""
+  vesselOwnerEmail_not: String
+
+  """All values that are contained in given list."""
+  vesselOwnerEmail_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselOwnerEmail_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselOwnerEmail_lt: String
+
+  """All values less than or equal the given value."""
+  vesselOwnerEmail_lte: String
+
+  """All values greater than the given value."""
+  vesselOwnerEmail_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselOwnerEmail_gte: String
+
+  """All values containing the given string."""
+  vesselOwnerEmail_contains: String
+
+  """All values not containing the given string."""
+  vesselOwnerEmail_not_contains: String
+
+  """All values starting with the given string."""
+  vesselOwnerEmail_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselOwnerEmail_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselOwnerEmail_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselOwnerEmail_not_ends_with: String
 }
 
 input VesselWhereUniqueInput {

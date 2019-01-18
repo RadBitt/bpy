@@ -19,6 +19,7 @@ type Vessel {
 	weekNightPrice: Int!
 	weekendNightPrice: Int!
 	vesselOwner: String
+	vesselOwnerEmail: String
 }
 
 type Class {
