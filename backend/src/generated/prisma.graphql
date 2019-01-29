@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/leonardo-m-hernandez/bpy-desktop-mysql/dev
-# timestamp: Wed Jan 16 2019 20:40:24 GMT-0800 (Pacific Standard Time)
+# timestamp: Sat Jan 26 2019 17:09:25 GMT-0800 (Pacific Standard Time)
 
 type AggregateClass {
   count: Int!
@@ -391,8 +391,9 @@ input ClassWhereUniqueInput {
 
 type Invoice implements Node {
   id: ID!
-  clientName: String
+  clientId: String
   vesselName: String
+  vesselId: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -409,8 +410,9 @@ type InvoiceConnection {
 }
 
 input InvoiceCreateInput {
-  clientName: String
+  clientId: String
   vesselName: String
+  vesselId: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -428,10 +430,12 @@ type InvoiceEdge {
 enum InvoiceOrderByInput {
   id_ASC
   id_DESC
-  clientName_ASC
-  clientName_DESC
+  clientId_ASC
+  clientId_DESC
   vesselName_ASC
   vesselName_DESC
+  vesselId_ASC
+  vesselId_DESC
   charterStartDate_ASC
   charterStartDate_DESC
   charterEndDate_ASC
@@ -446,8 +450,9 @@ enum InvoiceOrderByInput {
 
 type InvoicePreviousValues {
   id: ID!
-  clientName: String
+  clientId: String
   vesselName: String
+  vesselId: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -493,16 +498,18 @@ input InvoiceSubscriptionWhereInput {
 }
 
 input InvoiceUpdateInput {
-  clientName: String
+  clientId: String
   vesselName: String
+  vesselId: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
 }
 
 input InvoiceUpdateManyMutationInput {
-  clientName: String
+  clientId: String
   vesselName: String
+  vesselId: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -557,46 +564,46 @@ input InvoiceWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  clientName: String
+  clientId: String
 
   """All values that are not equal to given value."""
-  clientName_not: String
+  clientId_not: String
 
   """All values that are contained in given list."""
-  clientName_in: [String!]
+  clientId_in: [String!]
 
   """All values that are not contained in given list."""
-  clientName_not_in: [String!]
+  clientId_not_in: [String!]
 
   """All values less than the given value."""
-  clientName_lt: String
+  clientId_lt: String
 
   """All values less than or equal the given value."""
-  clientName_lte: String
+  clientId_lte: String
 
   """All values greater than the given value."""
-  clientName_gt: String
+  clientId_gt: String
 
   """All values greater than or equal the given value."""
-  clientName_gte: String
+  clientId_gte: String
 
   """All values containing the given string."""
-  clientName_contains: String
+  clientId_contains: String
 
   """All values not containing the given string."""
-  clientName_not_contains: String
+  clientId_not_contains: String
 
   """All values starting with the given string."""
-  clientName_starts_with: String
+  clientId_starts_with: String
 
   """All values not starting with the given string."""
-  clientName_not_starts_with: String
+  clientId_not_starts_with: String
 
   """All values ending with the given string."""
-  clientName_ends_with: String
+  clientId_ends_with: String
 
   """All values not ending with the given string."""
-  clientName_not_ends_with: String
+  clientId_not_ends_with: String
   vesselName: String
 
   """All values that are not equal to given value."""
@@ -637,6 +644,46 @@ input InvoiceWhereInput {
 
   """All values not ending with the given string."""
   vesselName_not_ends_with: String
+  vesselId: String
+
+  """All values that are not equal to given value."""
+  vesselId_not: String
+
+  """All values that are contained in given list."""
+  vesselId_in: [String!]
+
+  """All values that are not contained in given list."""
+  vesselId_not_in: [String!]
+
+  """All values less than the given value."""
+  vesselId_lt: String
+
+  """All values less than or equal the given value."""
+  vesselId_lte: String
+
+  """All values greater than the given value."""
+  vesselId_gt: String
+
+  """All values greater than or equal the given value."""
+  vesselId_gte: String
+
+  """All values containing the given string."""
+  vesselId_contains: String
+
+  """All values not containing the given string."""
+  vesselId_not_contains: String
+
+  """All values starting with the given string."""
+  vesselId_starts_with: String
+
+  """All values not starting with the given string."""
+  vesselId_not_starts_with: String
+
+  """All values ending with the given string."""
+  vesselId_ends_with: String
+
+  """All values not ending with the given string."""
+  vesselId_not_ends_with: String
   charterStartDate: String
 
   """All values that are not equal to given value."""
@@ -835,8 +882,14 @@ type Subscription {
 
 type User implements Node {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
   email: String!
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 """A connection to a list of items."""
@@ -850,8 +903,14 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  name: String!
+  firstName: String!
+  lastName: String!
   email: String!
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 """An edge in a connection."""
@@ -866,10 +925,22 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
   email_ASC
   email_DESC
+  address1_ASC
+  address1_DESC
+  address2_ASC
+  address2_DESC
+  city_ASC
+  city_DESC
+  state_ASC
+  state_DESC
+  zip_ASC
+  zip_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -878,8 +949,14 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
   email: String!
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 type UserSubscriptionPayload {
@@ -922,13 +999,25 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
+  firstName: String
+  lastName: String
   email: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  firstName: String
+  lastName: String
   email: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 input UserWhereInput {
@@ -980,46 +1069,86 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  firstName: String
 
   """All values that are not equal to given value."""
-  name_not: String
+  firstName_not: String
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  firstName_in: [String!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  firstName_not_in: [String!]
 
   """All values less than the given value."""
-  name_lt: String
+  firstName_lt: String
 
   """All values less than or equal the given value."""
-  name_lte: String
+  firstName_lte: String
 
   """All values greater than the given value."""
-  name_gt: String
+  firstName_gt: String
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  firstName_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  firstName_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  firstName_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  firstName_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  firstName_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  firstName_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -1060,6 +1189,188 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  address1: String
+
+  """All values that are not equal to given value."""
+  address1_not: String
+
+  """All values that are contained in given list."""
+  address1_in: [String!]
+
+  """All values that are not contained in given list."""
+  address1_not_in: [String!]
+
+  """All values less than the given value."""
+  address1_lt: String
+
+  """All values less than or equal the given value."""
+  address1_lte: String
+
+  """All values greater than the given value."""
+  address1_gt: String
+
+  """All values greater than or equal the given value."""
+  address1_gte: String
+
+  """All values containing the given string."""
+  address1_contains: String
+
+  """All values not containing the given string."""
+  address1_not_contains: String
+
+  """All values starting with the given string."""
+  address1_starts_with: String
+
+  """All values not starting with the given string."""
+  address1_not_starts_with: String
+
+  """All values ending with the given string."""
+  address1_ends_with: String
+
+  """All values not ending with the given string."""
+  address1_not_ends_with: String
+  address2: String
+
+  """All values that are not equal to given value."""
+  address2_not: String
+
+  """All values that are contained in given list."""
+  address2_in: [String!]
+
+  """All values that are not contained in given list."""
+  address2_not_in: [String!]
+
+  """All values less than the given value."""
+  address2_lt: String
+
+  """All values less than or equal the given value."""
+  address2_lte: String
+
+  """All values greater than the given value."""
+  address2_gt: String
+
+  """All values greater than or equal the given value."""
+  address2_gte: String
+
+  """All values containing the given string."""
+  address2_contains: String
+
+  """All values not containing the given string."""
+  address2_not_contains: String
+
+  """All values starting with the given string."""
+  address2_starts_with: String
+
+  """All values not starting with the given string."""
+  address2_not_starts_with: String
+
+  """All values ending with the given string."""
+  address2_ends_with: String
+
+  """All values not ending with the given string."""
+  address2_not_ends_with: String
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  state: String
+
+  """All values that are not equal to given value."""
+  state_not: String
+
+  """All values that are contained in given list."""
+  state_in: [String!]
+
+  """All values that are not contained in given list."""
+  state_not_in: [String!]
+
+  """All values less than the given value."""
+  state_lt: String
+
+  """All values less than or equal the given value."""
+  state_lte: String
+
+  """All values greater than the given value."""
+  state_gt: String
+
+  """All values greater than or equal the given value."""
+  state_gte: String
+
+  """All values containing the given string."""
+  state_contains: String
+
+  """All values not containing the given string."""
+  state_not_contains: String
+
+  """All values starting with the given string."""
+  state_starts_with: String
+
+  """All values not starting with the given string."""
+  state_not_starts_with: String
+
+  """All values ending with the given string."""
+  state_ends_with: String
+
+  """All values not ending with the given string."""
+  state_not_ends_with: String
+  zip: Int
+
+  """All values that are not equal to given value."""
+  zip_not: Int
+
+  """All values that are contained in given list."""
+  zip_in: [Int!]
+
+  """All values that are not contained in given list."""
+  zip_not_in: [Int!]
+
+  """All values less than the given value."""
+  zip_lt: Int
+
+  """All values less than or equal the given value."""
+  zip_lte: Int
+
+  """All values greater than the given value."""
+  zip_gt: Int
+
+  """All values greater than or equal the given value."""
+  zip_gte: Int
 }
 
 input UserWhereUniqueInput {
@@ -1071,8 +1382,7 @@ type Vessel implements Node {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
-  vesselOwner: String
-  vesselOwnerEmail: String
+  vesselOwnerId: String
 }
 
 """A connection to a list of items."""
@@ -1089,8 +1399,7 @@ input VesselCreateInput {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
-  vesselOwner: String
-  vesselOwnerEmail: String
+  vesselOwnerId: String
 }
 
 """An edge in a connection."""
@@ -1111,10 +1420,8 @@ enum VesselOrderByInput {
   weekNightPrice_DESC
   weekendNightPrice_ASC
   weekendNightPrice_DESC
-  vesselOwner_ASC
-  vesselOwner_DESC
-  vesselOwnerEmail_ASC
-  vesselOwnerEmail_DESC
+  vesselOwnerId_ASC
+  vesselOwnerId_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1126,8 +1433,7 @@ type VesselPreviousValues {
   vesselName: String!
   weekNightPrice: Int!
   weekendNightPrice: Int!
-  vesselOwner: String
-  vesselOwnerEmail: String
+  vesselOwnerId: String
 }
 
 type VesselSubscriptionPayload {
@@ -1173,16 +1479,14 @@ input VesselUpdateInput {
   vesselName: String
   weekNightPrice: Int
   weekendNightPrice: Int
-  vesselOwner: String
-  vesselOwnerEmail: String
+  vesselOwnerId: String
 }
 
 input VesselUpdateManyMutationInput {
   vesselName: String
   weekNightPrice: Int
   weekendNightPrice: Int
-  vesselOwner: String
-  vesselOwnerEmail: String
+  vesselOwnerId: String
 }
 
 input VesselWhereInput {
@@ -1318,86 +1622,46 @@ input VesselWhereInput {
 
   """All values greater than or equal the given value."""
   weekendNightPrice_gte: Int
-  vesselOwner: String
+  vesselOwnerId: String
 
   """All values that are not equal to given value."""
-  vesselOwner_not: String
+  vesselOwnerId_not: String
 
   """All values that are contained in given list."""
-  vesselOwner_in: [String!]
+  vesselOwnerId_in: [String!]
 
   """All values that are not contained in given list."""
-  vesselOwner_not_in: [String!]
+  vesselOwnerId_not_in: [String!]
 
   """All values less than the given value."""
-  vesselOwner_lt: String
+  vesselOwnerId_lt: String
 
   """All values less than or equal the given value."""
-  vesselOwner_lte: String
+  vesselOwnerId_lte: String
 
   """All values greater than the given value."""
-  vesselOwner_gt: String
+  vesselOwnerId_gt: String
 
   """All values greater than or equal the given value."""
-  vesselOwner_gte: String
+  vesselOwnerId_gte: String
 
   """All values containing the given string."""
-  vesselOwner_contains: String
+  vesselOwnerId_contains: String
 
   """All values not containing the given string."""
-  vesselOwner_not_contains: String
+  vesselOwnerId_not_contains: String
 
   """All values starting with the given string."""
-  vesselOwner_starts_with: String
+  vesselOwnerId_starts_with: String
 
   """All values not starting with the given string."""
-  vesselOwner_not_starts_with: String
+  vesselOwnerId_not_starts_with: String
 
   """All values ending with the given string."""
-  vesselOwner_ends_with: String
+  vesselOwnerId_ends_with: String
 
   """All values not ending with the given string."""
-  vesselOwner_not_ends_with: String
-  vesselOwnerEmail: String
-
-  """All values that are not equal to given value."""
-  vesselOwnerEmail_not: String
-
-  """All values that are contained in given list."""
-  vesselOwnerEmail_in: [String!]
-
-  """All values that are not contained in given list."""
-  vesselOwnerEmail_not_in: [String!]
-
-  """All values less than the given value."""
-  vesselOwnerEmail_lt: String
-
-  """All values less than or equal the given value."""
-  vesselOwnerEmail_lte: String
-
-  """All values greater than the given value."""
-  vesselOwnerEmail_gt: String
-
-  """All values greater than or equal the given value."""
-  vesselOwnerEmail_gte: String
-
-  """All values containing the given string."""
-  vesselOwnerEmail_contains: String
-
-  """All values not containing the given string."""
-  vesselOwnerEmail_not_contains: String
-
-  """All values starting with the given string."""
-  vesselOwnerEmail_starts_with: String
-
-  """All values not starting with the given string."""
-  vesselOwnerEmail_not_starts_with: String
-
-  """All values ending with the given string."""
-  vesselOwnerEmail_ends_with: String
-
-  """All values not ending with the given string."""
-  vesselOwnerEmail_not_ends_with: String
+  vesselOwnerId_not_ends_with: String
 }
 
 input VesselWhereUniqueInput {

@@ -1,13 +1,20 @@
 type User {
-  id: ID! @unique
-  name: String!
-  email: String!
+	id: ID! @unique
+	firstName: String!
+	lastName: String!
+	email: String!
+	address1: String
+	address2: String
+	city: String
+	state: String
+	zip: Int
 }
 
 type Invoice {
 	id: ID! @unique
-	clientName: String
+	clientId: String
 	vesselName: String
+	vesselId: String
 	charterStartDate: String
 	charterEndDate: String
 	totalPrice: Int
@@ -18,8 +25,7 @@ type Vessel {
 	vesselName: String!
 	weekNightPrice: Int!
 	weekendNightPrice: Int!
-	vesselOwner: String
-	vesselOwnerEmail: String
+	vesselOwnerId: String
 }
 
 type Class {

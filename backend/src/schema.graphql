@@ -1,9 +1,23 @@
 # import * from './generated/prisma.graphql'
 
 type Mutation {
+	createUser(
+		firstName: String
+		lastName: String
+		email: String
+		address1: String
+		address2: String
+		city: String
+		state: String
+		zip: Int
+	): User!
+}
+
+type Mutation {
 	createInvoice(
-		clientName: String
+		clientId: String
 		vesselName: String
+		vesselId: String
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
@@ -15,8 +29,7 @@ type Mutation {
 		vesselName: String
 		weekNightPrice: Int
 		weekendNightPrice: Int
-		vesselOwner: String
-		vesselOwnerEmail: String
+		vesselOwnerId: String
 	): Vessel!
 }
 

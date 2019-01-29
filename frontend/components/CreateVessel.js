@@ -13,15 +13,13 @@ const CREATE_VESSEL_MUTATION = gql`
 		$vesselName: String
 		$weekNightPrice: Int
 		$weekendNightPrice: Int
-		$vesselOwner: String
-		$vesselOwnerEmail: String
+		$vesselOwnerId: String
 	){
 		createVessel(
 		vesselName: $vesselName
 		weekNightPrice: $weekNightPrice
 		weekendNightPrice: $weekendNightPrice
-		vesselOwner: $vesselOwner
-		vesselOwnerEmail: $vesselOwnerEmail
+		vesselOwnerId: $vesselOwner
 		) {
 			id
 		}
@@ -35,8 +33,7 @@ class CreateVessel extends React.Component {
 		vesselName: '',
 		weekNightPrice: '',
 		weekendNightPrice: '',
-		vesselOwner: '',
-		vesselOwnerEmail: ''
+		vesselOwnerId: ''
 	}
 
 	handleChange = e => {
@@ -101,32 +98,6 @@ class CreateVessel extends React.Component {
 						    placeholder="weekendNightPrice" 
 						    required
 						    value={this.state.weekendNightPrice}
-						    onChange={this.handleChange}
-					    />
-					</div>
-					<div className="form-group">
-					    <label htmlFor="vesselOwner">vesselOwner</label>
-					    <input 
-						    type="text" 
-						    className="form-control" 
-						    id="vesselOwner"
-						    name="vesselOwner"			
-						    placeholder="vesselOwner" 
-						    required
-						    value={this.state.vesselOwner}
-						    onChange={this.handleChange}
-					    />
-					</div>
-					<div className="form-group">
-					    <label htmlFor="vesselOwnerEmail">vesselOwnerEmail</label>
-					    <input 
-						    type="text" 
-						    className="form-control" 
-						    id="vesselOwnerEmail"
-						    name="vesselOwnerEmail"			
-						    placeholder="vesselOwnerEmail" 
-						    required
-						    value={this.state.vesselOwnerEmail}
 						    onChange={this.handleChange}
 					    />
 					</div>

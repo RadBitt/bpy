@@ -11,14 +11,14 @@ import Error from './ErrorMessage';
 
 const CREATE_INVOICE_MUTATION = gql`
 	mutation CREATE_INVOICE_MUTATION(
-		$clientName: String
+		$clientId: String
 		$vesselName: String
 		$charterStartDate: String
 		$charterEndDate: String
 		$totalPrice: Int
 	){
 		createInvoice(
-		clientName: $clientName
+		clientId: $clientId
 		vesselName: $vesselName
 		charterStartDate: $charterStartDate
 		charterEndDate: $charterEndDate
@@ -33,7 +33,7 @@ const CREATE_INVOICE_MUTATION = gql`
 class CreateInvoice extends React.Component {
 
 	state = {
-		clientName: '',
+		clientId: '',
 		vesselName: '',
 		charterStartDate: moment()._d,
 		charterEndDate: moment()._d,
@@ -106,19 +106,6 @@ class CreateInvoice extends React.Component {
 					}}>
 					<Error error={error} />
 					<fieldset disabled={loading} />
-					<div className="form-group">
-					    <label htmlFor="clientName">Client Name</label>
-					    <input 
-						    type="text" 
-						    className="form-control" 
-						    id="clientName"
-						    name="clientName"			
-						    placeholder="Client Name" 
-						    required
-						    value={this.state.clientName}
-						    onChange={this.handleChange}
-					    />
-					</div>
 					<div className="form-group">
 					    <label htmlFor="vesselName">Select Charter Vessel</label>
 					      <VesselOptionList className="form-control" 
