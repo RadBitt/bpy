@@ -8,13 +8,24 @@ type User {
 	city: String
 	state: String
 	zip: Int
+	invoices: [Invoice]
+	quotes: [Quote]
+	courses: [Course]
 }
 
 type Invoice {
 	id: ID! @unique
-	clientId: String
-	vesselName: String
-	vesselId: String
+	user: User
+	vessel: Vessel
+	charterStartDate: String
+	charterEndDate: String
+	totalPrice: Int
+}
+
+type Quote {
+	id: ID! @unique
+	user: User
+	vessel: Vessel
 	charterStartDate: String
 	charterEndDate: String
 	totalPrice: Int
@@ -25,17 +36,17 @@ type Vessel {
 	vesselName: String!
 	weekNightPrice: Int!
 	weekendNightPrice: Int!
-	vesselOwnerId: String
 }
 
-type Class {
+type Course {
 	id: ID! @unique
-	className: String!
-	classPrice: Int!
-	classDays: Int!
-	classDate: String!
-	vesselID: String!
+	courseName: String!
+	coursePrice: Int!
+	courseDays: Int!
+	charterStartDate: String
+	charterEndDate: String
+	totalPrice: Int
+	vessel: Vessel
 	participants: Int
+	users: [User]
 }
-
-

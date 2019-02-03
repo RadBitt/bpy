@@ -8,17 +8,16 @@ import VesselOptionList from './queries/VesselOptionList';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
-
-const CREATE_INVOICE_MUTATION = gql`
-	mutation CREATE_INVOICE_MUTATION(
-		$clientId: String
+const CREATE_QUOTE_MUTATION = gql`
+	mutation CREATE_QUOTE_MUTATION(
+		$clientName: String
 		$vesselId: String
 		$charterStartDate: String
 		$charterEndDate: String
 		$totalPrice: Int
 	){
-		createInvoice(
-		clientId: $clientId
+		createQuote(
+		clientName: $clientName
 		vesselId: $vesselId
 		charterStartDate: $charterStartDate
 		charterEndDate: $charterEndDate
@@ -29,11 +28,10 @@ const CREATE_INVOICE_MUTATION = gql`
 	}
 `
 
-
-class CreateInvoice extends React.Component {
+class CreateQuote extends React.Component {
 
 	state = {
-		clientId: '',
+		clientName: '',
 		vesselId: '',
 		charterStartDate: moment()._d,
 		charterEndDate: moment()._d,
@@ -89,23 +87,35 @@ class CreateInvoice extends React.Component {
 	render() {
 		return(
 			<Mutation 
-			mutation={CREATE_INVOICE_MUTATION} 
+			mutation={CREATE_QUOTE_MUTATION} 
 			variables={this.state}>
-			{(createInvoice, { loading, error }) => (
+			{(createQuote, { loading, error }) => (
 				<form onSubmit={async e => {
 						// Stop the form from submitting
 						e.preventDefault();
 						// call the mutation
-						const res = await createInvoice();
+						const res = await createQuote();
 						// change them to the single item page
 						console.log(res);
 						Router.push({
-						pathname: '/invoices',
-						query: { id: res.data.createInvoice.id },
+						pathname: '/quotes',
+						query: { id: res.data.createQuote.id },
 						});
 					}}>
 					<Error error={error} />
 					<fieldset disabled={loading} />
+					<div className="form-group">
+					    <label htmlFor="clientName">Select Client Name</label>
+					    <input 
+						    type="text" 
+						    className="form-control" 
+						    id="clientName"
+						    name="clientName"			
+						    required
+						    value={this.state.clientName}
+						    onChange={this.handleChange}
+					    />
+				 	</div>
 					<div className="form-group">
 					    <label htmlFor="vesselId">Select Charter Vessel</label>
 					      <VesselOptionList className="form-control" 
@@ -158,4 +168,4 @@ class CreateInvoice extends React.Component {
 	}
 }
 
-export default CreateInvoice;
+export default CreateQuote;

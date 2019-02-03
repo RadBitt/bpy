@@ -11,8 +11,7 @@ const ALL_VESSELS_QUERY = gql`
 		vesselName
 		weekNightPrice
 		weekendNightPrice
-	    vesselOwner
-	    vesselOwnerEmail
+	    vesselOwnerId
 	  }
 	}
 `;
@@ -33,8 +32,6 @@ class Vessels extends React.Component {
 									<th>Vessel Name</th>
 									<th>Week Night Price</th>
 									<th>Weekend Night Price</th>
-									<th>Vessel Owner</th>
-									<th>Vessel Owner Email</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</tr>
@@ -51,8 +48,6 @@ class Vessels extends React.Component {
 								<td>{vessel.vesselName}</td>
 								<td>{vessel.weekNightPrice}</td>
 								<td>{vessel.weekendNightPrice}</td>
-								<td>{vessel.vesselOwner}</td>
-								<td>{vessel.vesselOwnerEmail}</td>
 								<td><Link href={{
 									pathname: 'update', query: {id: vessel.id}}}><a>edit</a></Link></td>
 								<td><Link href={{pathname: 'update', query: {id: vessel.id}}}><a>delete</a></Link></td>

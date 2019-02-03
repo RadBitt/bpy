@@ -8,10 +8,10 @@ const ALL_INVOICES_QUERY = gql`
 	query ALL_INVOICES_QUERY {
 		invoices {
 		id
-		clientName
+		clientId
+		vesselId
 		charterStartDate
 		charterEndDate
-	    vesselName
 	    totalPrice
 	  }
 	}
@@ -48,8 +48,8 @@ class Invoices extends React.Component {
 									pathname: '/invoice',
 									query: {id: invoice.id}
 								}}><a>{invoice.id}</a></Link></td>
-								<td>{invoice.clientName}</td>
-								<td>{invoice.vesselName}</td>
+								<td>{invoice.clientId}</td>
+								<td>{invoice.vesselId}</td>
 								<td>{invoice.charterStartDate}</td>
 								<td>{invoice.charterEndDate}</td>
 								<td>{formatMoney(invoice.totalPrice)}</td>

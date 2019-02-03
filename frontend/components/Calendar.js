@@ -21,7 +21,7 @@ class Calendar extends React.Component {
 		for(let i = dates.start; i <= dates.end; i++) {
 			dateString = dateObj.format('D');
 			dateId = dateObj.format('M-D-YYYY');
-			calendarDays.push(<th id={dateId}>{dateString}</th>);
+			calendarDays.push(<th key={dateId} id={dateId}>{dateString}</th>);
 			dateObj.add(1, 'day');
 		}
 
@@ -29,8 +29,8 @@ class Calendar extends React.Component {
 			<table className="table">
 				<thead className="thead thead-dark">
 					<tr>
-					<th>{this.state.moment.format('MMMM')}</th>
-					{calendarDays}
+						<th>{this.state.moment.format('MMMM')}</th>
+						{calendarDays}
 					</tr>
 				</thead>
 				<tbody>

@@ -15,9 +15,8 @@ type Mutation {
 
 type Mutation {
 	createInvoice(
-		clientId: String
-		vesselName: String
-		vesselId: String
+		user: User
+		vessel: Vessel
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
@@ -25,12 +24,39 @@ type Mutation {
 }
 
 type Mutation {
+	createQuote(
+		user: User
+		vessel: Vessel
+		charterStartDate: String
+		charterEndDate: String
+		totalPrice: Int
+	): Quote!
+}
+
+type Mutation {
 	createVessel(
 		vesselName: String
 		weekNightPrice: Int
 		weekendNightPrice: Int
-		vesselOwnerId: String
 	): Vessel!
+}
+
+type Mutation {
+	createCourse(
+		courseName: String
+		coursePrice: Int
+		courseDays: Int
+		charterStartDate: String
+		charterEndDate: String
+		totalPrice: Int
+		vessel: Vessel
+		participants: Int
+		users: [User]
+	): Course!
+}
+
+type Query {
+	users: [User!]
 }
 
 type Query {
@@ -38,5 +64,13 @@ type Query {
 }
 
 type Query {
+	quotes: [Quote!]
+}
+
+type Query {
 	vessels: [Vessel!]
+}
+
+type Query {
+	courses: [Course!]
 }

@@ -1,6 +1,6 @@
 const Mutations = {
 	async createUser(parent, args, ctx, info) {
-		const user = await ctx.db.mutation.createInvoice({
+		const user = await ctx.db.mutation.createUser({
 			data: {
 				...args
 			}
@@ -15,6 +15,14 @@ const Mutations = {
 		}, info);
 		return invoice;
 	},
+	async createQuote(parent, args, ctx, info) {
+		const quote = await ctx.db.mutation.createQuote({
+			data: {
+				...args
+			}
+		}, info);
+		return quote;
+	},
 	async createVessel(parent, args, ctx, info) {
 		const vessel = await ctx.db.mutation.createVessel({
 			data: {
@@ -22,6 +30,14 @@ const Mutations = {
 			}
 		}, info);
 		return vessel;
+	},
+	async createCourse(parent, args, ctx, info) {
+		const course = await ctx.db.mutation.createCourse({
+			data: {
+				...args
+			}
+		}, info);
+		return course;
 	}
 };
 

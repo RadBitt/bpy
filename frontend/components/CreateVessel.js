@@ -13,13 +13,11 @@ const CREATE_VESSEL_MUTATION = gql`
 		$vesselName: String
 		$weekNightPrice: Int
 		$weekendNightPrice: Int
-		$vesselOwnerId: String
 	){
 		createVessel(
 		vesselName: $vesselName
 		weekNightPrice: $weekNightPrice
 		weekendNightPrice: $weekendNightPrice
-		vesselOwnerId: $vesselOwner
 		) {
 			id
 		}
@@ -32,8 +30,7 @@ class CreateVessel extends React.Component {
 	state = {
 		vesselName: '',
 		weekNightPrice: '',
-		weekendNightPrice: '',
-		vesselOwnerId: ''
+		weekendNightPrice: ''
 	}
 
 	handleChange = e => {
