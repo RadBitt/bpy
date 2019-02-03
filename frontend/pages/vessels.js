@@ -11,7 +11,6 @@ const ALL_VESSELS_QUERY = gql`
 		vesselName
 		weekNightPrice
 		weekendNightPrice
-	    vesselOwnerId
 	  }
 	}
 `;

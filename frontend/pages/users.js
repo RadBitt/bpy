@@ -9,6 +9,7 @@ const ALL_USERS_QUERY = gql`
 		id
 		firstName
 		lastName
+		phone
 		email
 		city
 		state
@@ -29,10 +30,11 @@ class Users extends React.Component {
 						return <table className="table table-striped users-table">
 							<thead className="thead-dark">
 								<tr>
-									<th>Client ID</th>
+									<th>+</th>
 									<th>First Name</th>
 									<th>Last Name</th>
-									<th>Emaile</th>
+									<th>Phone</th>
+									<th>Email</th>
 									<th>City</th>
 									<th>State</th>
 									<th>Zip</th>
@@ -48,9 +50,10 @@ class Users extends React.Component {
 								<td><Link href={{
 									pathname: '/user',
 									query: {id: user.id}
-								}}><a>{user.id}</a></Link></td>
+								}}><a>+</a></Link></td>
 								<td>{user.firstName}</td>
 								<td>{user.lastName}</td>
+								<td>{user.phone}</td>
 								<td>{user.email}</td>
 								<td>{user.city}</td>
 								<td>{user.state}</td>

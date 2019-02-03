@@ -9,6 +9,7 @@ const CREATE_USER_MUTATION = gql`
 	mutation CREATE_USER_MUTATION(
 		$firstName: String
 		$lastName: String
+		$phone: String
 		$email: String
 		$address1: String
 		$address2: String
@@ -19,6 +20,7 @@ const CREATE_USER_MUTATION = gql`
 		createUser(
 		firstName: $firstName
 		lastName: $lastName
+		phone: $phone
 		email: $email
 		address1: $address1
 		address2: $address2
@@ -65,7 +67,7 @@ class CreateUser extends React.Component {
 						// change them to the single item page
 						console.log(res);
 						Router.push({
-						pathname: '/users',
+						pathname: '/user',
 						query: { id: res.data.createUser.id },
 						});
 					}}>
@@ -94,6 +96,19 @@ class CreateUser extends React.Component {
 							placeholder="lastName"
 							required
 							value={this.state.lastName}
+							onChange={this.handleChange}
+						/>
+						</div>
+						<div className="form-group">
+						<label htmlFor="phone">phone</label>
+						<input
+							type="text"
+							className="form-control"
+							id="phone"
+							name="phone"
+							placeholder="phone"
+							required
+							value={this.state.phone}
 							onChange={this.handleChange}
 						/>
 						</div>

@@ -4,6 +4,7 @@ type Mutation {
 	createUser(
 		firstName: String
 		lastName: String
+		phone: String
 		email: String
 		address1: String
 		address2: String
@@ -11,37 +12,21 @@ type Mutation {
 		state: String
 		zip: Int
 	): User!
-}
-
-type Mutation {
 	createInvoice(
-		user: User
-		vessel: Vessel
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
 	): Invoice!
-}
-
-type Mutation {
 	createQuote(
-		user: User
-		vessel: Vessel
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
 	): Quote!
-}
-
-type Mutation {
 	createVessel(
 		vesselName: String
 		weekNightPrice: Int
 		weekendNightPrice: Int
 	): Vessel!
-}
-
-type Mutation {
 	createCourse(
 		courseName: String
 		coursePrice: Int
@@ -49,28 +34,19 @@ type Mutation {
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
-		vessel: Vessel
 		participants: Int
-		users: [User]
 	): Course!
 }
 
 type Query {
-	users: [User!]
-}
-
-type Query {
-	invoices: [Invoice!]
-}
-
-type Query {
+	users: [User]!
+	user(where: UserWhereUniqueInput!): User
+	invoices(where: InvoiceWhereInput): [Invoice!]
+	invoice(where: InvoiceWhereUniqueInput!): Invoice
 	quotes: [Quote!]
-}
-
-type Query {
+	quote(where: QuoteWhereUniqueInput!): Quote
 	vessels: [Vessel!]
-}
-
-type Query {
+	vessel(where: VesselWhereUniqueInput!): Vessel
 	courses: [Course!]
+	course(where: CourseWhereUniqueInput!): Course
 }

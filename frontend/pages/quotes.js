@@ -8,8 +8,13 @@ const ALL_QUOTES_QUERY = gql`
 	query ALL_QUOTES_QUERY {
 		quotes {
 		id
-		clientName
-		vesselId
+		user {
+			firstName
+			lastName
+		}
+		vessel {
+			vesselName
+		}
 		charterStartDate
 		charterEndDate
 	    totalPrice
@@ -30,8 +35,8 @@ class Quotes extends React.Component {
 							<thead className="thead-dark">
 								<tr>
 									<th>Quote ID</th>
-									<th>Client Name</th>
-									<th>Vessel Id</th>
+									<th>Client</th>
+									<th>Vessel</th>
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>Total Price</th>
@@ -48,8 +53,8 @@ class Quotes extends React.Component {
 									pathname: '/quote',
 									query: {id: quote.id}
 								}}><a>{quote.id}</a></Link></td>
-								<td>{quote.clientName}</td>
-								<td>{quote.vesselId}</td>
+								<td>{quote.user.firstName} {quote.user.lastName}</td>
+								<td>{quote.vessel.vesselName}</td>
 								<td>{quote.charterStartDate}</td>
 								<td>{quote.charterEndDate}</td>
 								<td>{formatMoney(quote.totalPrice)}</td>

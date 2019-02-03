@@ -11,15 +11,11 @@ import Error from './ErrorMessage';
 
 const CREATE_INVOICE_MUTATION = gql`
 	mutation CREATE_INVOICE_MUTATION(
-		$clientId: String
-		$vesselId: String
 		$charterStartDate: String
 		$charterEndDate: String
 		$totalPrice: Int
 	){
 		createInvoice(
-		clientId: $clientId
-		vesselId: $vesselId
 		charterStartDate: $charterStartDate
 		charterEndDate: $charterEndDate
 		totalPrice: $totalPrice
@@ -33,18 +29,31 @@ const CREATE_INVOICE_MUTATION = gql`
 class CreateInvoice extends React.Component {
 
 	state = {
-		clientId: '',
-		vesselId: '',
+		user: '',
+		vessel: '',
 		charterStartDate: moment()._d,
 		charterEndDate: moment()._d,
 		totalPrice: 0,
 		displayPrice: 0
 	}
 
+	componentDidMount = () => {
+		this.setState({
+			user: this.props.id
+		})
+	}
+
 	handleChange = e => {
 		const {name, type, value } = e.target;
 		const val = type === 'number' ? parseFloat(value) : value;
 		this.setState({ [name]: val })
+	}
+
+	handleVesselChange = e => {
+		const value = e.target.value;
+		this.setState({ 
+			vessel: value
+		})
 	}
 
 	handleStartDateChange = date => {
@@ -98,7 +107,6 @@ class CreateInvoice extends React.Component {
 						// call the mutation
 						const res = await createInvoice();
 						// change them to the single item page
-						console.log(res);
 						Router.push({
 						pathname: '/invoices',
 						query: { id: res.data.createInvoice.id },
@@ -107,12 +115,12 @@ class CreateInvoice extends React.Component {
 					<Error error={error} />
 					<fieldset disabled={loading} />
 					<div className="form-group">
-					    <label htmlFor="vesselId">Select Charter Vessel</label>
+					    <label htmlFor="vessel">Select Charter Vessel</label>
 					      <VesselOptionList className="form-control" 
-					    	id="vesselId"
-					    	name="vesselId"
-					    	value={this.state.vesselId}
-					    	onChange={this.handleChange}
+					    	id="vessel"
+					    	name="vessel"
+					    	value={this.state.vessel}
+					    	handleVesselChange={this.handleVesselChange}
 					    />
 				 	</div>
 				 	<div className="form-group">

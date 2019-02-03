@@ -1,24 +1,15 @@
+const { forwardTo } = require('prisma-binding');
+
 const Query = {
-	async users(parent, args, ctx, info) {
-		const users = await ctx.db.query.users();
-		return users
-	},
-	async invoices(parent, args, ctx, info) {
-		const invoices = await ctx.db.query.invoices();
-		return invoices
-	},
-	async quotes(parent, args, ctx, info) {
-		const quotes = await ctx.db.query.quotes();
-		return quotes
-	},
-	async vessels(parent, args, ctx, info) {
-		const vessels = await ctx.db.query.vessels();
-		return vessels
-	},
-	async courses(parent, args, ctx, info) {
-		const courses = await ctx.db.query.courses();
-		return courses
-	},
+	users: forwardTo('db'),
+	user: forwardTo('db'),
+	invoices: forwardTo('db'),
+	invoice: forwardTo('db'),
+	quotes: forwardTo('db'),
+	vessels: forwardTo('db'),
+	vessel: forwardTo('db'),
+	courses: forwardTo('db'),
+	course: forwardTo('db')
 };
 
 module.exports = Query;

@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/leonardo-m-hernandez/bpy-desktop-mysql/dev
-# timestamp: Sat Feb 02 2019 20:10:16 GMT-0800 (Pacific Standard Time)
+# timestamp: Sun Feb 03 2019 03:52:03 GMT-0800 (Pacific Standard Time)
 
 type AggregateCourse {
   count: Int!
@@ -34,8 +34,8 @@ type Course implements Node {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-  vessel: Vessel
   participants: Int
+  vessel: Vessel
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
 }
 
@@ -58,23 +58,7 @@ input CourseCreateInput {
   totalPrice: Int
   participants: Int
   vessel: VesselCreateOneInput
-  users: UserCreateManyWithoutCoursesInput
-}
-
-input CourseCreateManyWithoutUsersInput {
-  create: [CourseCreateWithoutUsersInput!]
-  connect: [CourseWhereUniqueInput!]
-}
-
-input CourseCreateWithoutUsersInput {
-  courseName: String!
-  coursePrice: Int!
-  courseDays: Int!
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
-  participants: Int
-  vessel: VesselCreateOneInput
+  users: UserCreateManyInput
 }
 
 """An edge in a connection."""
@@ -118,265 +102,6 @@ type CoursePreviousValues {
   charterEndDate: String
   totalPrice: Int
   participants: Int
-}
-
-input CourseScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [CourseScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [CourseScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [CourseScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  courseName: String
-
-  """All values that are not equal to given value."""
-  courseName_not: String
-
-  """All values that are contained in given list."""
-  courseName_in: [String!]
-
-  """All values that are not contained in given list."""
-  courseName_not_in: [String!]
-
-  """All values less than the given value."""
-  courseName_lt: String
-
-  """All values less than or equal the given value."""
-  courseName_lte: String
-
-  """All values greater than the given value."""
-  courseName_gt: String
-
-  """All values greater than or equal the given value."""
-  courseName_gte: String
-
-  """All values containing the given string."""
-  courseName_contains: String
-
-  """All values not containing the given string."""
-  courseName_not_contains: String
-
-  """All values starting with the given string."""
-  courseName_starts_with: String
-
-  """All values not starting with the given string."""
-  courseName_not_starts_with: String
-
-  """All values ending with the given string."""
-  courseName_ends_with: String
-
-  """All values not ending with the given string."""
-  courseName_not_ends_with: String
-  coursePrice: Int
-
-  """All values that are not equal to given value."""
-  coursePrice_not: Int
-
-  """All values that are contained in given list."""
-  coursePrice_in: [Int!]
-
-  """All values that are not contained in given list."""
-  coursePrice_not_in: [Int!]
-
-  """All values less than the given value."""
-  coursePrice_lt: Int
-
-  """All values less than or equal the given value."""
-  coursePrice_lte: Int
-
-  """All values greater than the given value."""
-  coursePrice_gt: Int
-
-  """All values greater than or equal the given value."""
-  coursePrice_gte: Int
-  courseDays: Int
-
-  """All values that are not equal to given value."""
-  courseDays_not: Int
-
-  """All values that are contained in given list."""
-  courseDays_in: [Int!]
-
-  """All values that are not contained in given list."""
-  courseDays_not_in: [Int!]
-
-  """All values less than the given value."""
-  courseDays_lt: Int
-
-  """All values less than or equal the given value."""
-  courseDays_lte: Int
-
-  """All values greater than the given value."""
-  courseDays_gt: Int
-
-  """All values greater than or equal the given value."""
-  courseDays_gte: Int
-  charterStartDate: String
-
-  """All values that are not equal to given value."""
-  charterStartDate_not: String
-
-  """All values that are contained in given list."""
-  charterStartDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterStartDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterStartDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterStartDate_lte: String
-
-  """All values greater than the given value."""
-  charterStartDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterStartDate_gte: String
-
-  """All values containing the given string."""
-  charterStartDate_contains: String
-
-  """All values not containing the given string."""
-  charterStartDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterStartDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterStartDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterStartDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterStartDate_not_ends_with: String
-  charterEndDate: String
-
-  """All values that are not equal to given value."""
-  charterEndDate_not: String
-
-  """All values that are contained in given list."""
-  charterEndDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterEndDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterEndDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterEndDate_lte: String
-
-  """All values greater than the given value."""
-  charterEndDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterEndDate_gte: String
-
-  """All values containing the given string."""
-  charterEndDate_contains: String
-
-  """All values not containing the given string."""
-  charterEndDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterEndDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterEndDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterEndDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterEndDate_not_ends_with: String
-  totalPrice: Int
-
-  """All values that are not equal to given value."""
-  totalPrice_not: Int
-
-  """All values that are contained in given list."""
-  totalPrice_in: [Int!]
-
-  """All values that are not contained in given list."""
-  totalPrice_not_in: [Int!]
-
-  """All values less than the given value."""
-  totalPrice_lt: Int
-
-  """All values less than or equal the given value."""
-  totalPrice_lte: Int
-
-  """All values greater than the given value."""
-  totalPrice_gt: Int
-
-  """All values greater than or equal the given value."""
-  totalPrice_gte: Int
-  participants: Int
-
-  """All values that are not equal to given value."""
-  participants_not: Int
-
-  """All values that are contained in given list."""
-  participants_in: [Int!]
-
-  """All values that are not contained in given list."""
-  participants_not_in: [Int!]
-
-  """All values less than the given value."""
-  participants_lt: Int
-
-  """All values less than or equal the given value."""
-  participants_lte: Int
-
-  """All values greater than the given value."""
-  participants_gt: Int
-
-  """All values greater than or equal the given value."""
-  participants_gte: Int
 }
 
 type CourseSubscriptionPayload {
@@ -427,17 +152,7 @@ input CourseUpdateInput {
   totalPrice: Int
   participants: Int
   vessel: VesselUpdateOneInput
-  users: UserUpdateManyWithoutCoursesInput
-}
-
-input CourseUpdateManyDataInput {
-  courseName: String
-  coursePrice: Int
-  courseDays: Int
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
-  participants: Int
+  users: UserUpdateManyInput
 }
 
 input CourseUpdateManyMutationInput {
@@ -448,45 +163,6 @@ input CourseUpdateManyMutationInput {
   charterEndDate: String
   totalPrice: Int
   participants: Int
-}
-
-input CourseUpdateManyWithoutUsersInput {
-  create: [CourseCreateWithoutUsersInput!]
-  connect: [CourseWhereUniqueInput!]
-  set: [CourseWhereUniqueInput!]
-  disconnect: [CourseWhereUniqueInput!]
-  delete: [CourseWhereUniqueInput!]
-  update: [CourseUpdateWithWhereUniqueWithoutUsersInput!]
-  updateMany: [CourseUpdateManyWithWhereNestedInput!]
-  deleteMany: [CourseScalarWhereInput!]
-  upsert: [CourseUpsertWithWhereUniqueWithoutUsersInput!]
-}
-
-input CourseUpdateManyWithWhereNestedInput {
-  where: CourseScalarWhereInput!
-  data: CourseUpdateManyDataInput!
-}
-
-input CourseUpdateWithoutUsersDataInput {
-  courseName: String
-  coursePrice: Int
-  courseDays: Int
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
-  participants: Int
-  vessel: VesselUpdateOneInput
-}
-
-input CourseUpdateWithWhereUniqueWithoutUsersInput {
-  where: CourseWhereUniqueInput!
-  data: CourseUpdateWithoutUsersDataInput!
-}
-
-input CourseUpsertWithWhereUniqueWithoutUsersInput {
-  where: CourseWhereUniqueInput!
-  update: CourseUpdateWithoutUsersDataInput!
-  create: CourseCreateWithoutUsersInput!
 }
 
 input CourseWhereInput {
@@ -779,19 +455,7 @@ input InvoiceCreateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-  user: UserCreateOneWithoutInvoicesInput
-  vessel: VesselCreateOneInput
-}
-
-input InvoiceCreateManyWithoutUserInput {
-  create: [InvoiceCreateWithoutUserInput!]
-  connect: [InvoiceWhereUniqueInput!]
-}
-
-input InvoiceCreateWithoutUserInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
+  user: UserCreateOneInput
   vessel: VesselCreateOneInput
 }
 
@@ -824,159 +488,6 @@ type InvoicePreviousValues {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-}
-
-input InvoiceScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [InvoiceScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [InvoiceScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [InvoiceScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  charterStartDate: String
-
-  """All values that are not equal to given value."""
-  charterStartDate_not: String
-
-  """All values that are contained in given list."""
-  charterStartDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterStartDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterStartDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterStartDate_lte: String
-
-  """All values greater than the given value."""
-  charterStartDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterStartDate_gte: String
-
-  """All values containing the given string."""
-  charterStartDate_contains: String
-
-  """All values not containing the given string."""
-  charterStartDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterStartDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterStartDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterStartDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterStartDate_not_ends_with: String
-  charterEndDate: String
-
-  """All values that are not equal to given value."""
-  charterEndDate_not: String
-
-  """All values that are contained in given list."""
-  charterEndDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterEndDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterEndDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterEndDate_lte: String
-
-  """All values greater than the given value."""
-  charterEndDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterEndDate_gte: String
-
-  """All values containing the given string."""
-  charterEndDate_contains: String
-
-  """All values not containing the given string."""
-  charterEndDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterEndDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterEndDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterEndDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterEndDate_not_ends_with: String
-  totalPrice: Int
-
-  """All values that are not equal to given value."""
-  totalPrice_not: Int
-
-  """All values that are contained in given list."""
-  totalPrice_in: [Int!]
-
-  """All values that are not contained in given list."""
-  totalPrice_not_in: [Int!]
-
-  """All values less than the given value."""
-  totalPrice_lt: Int
-
-  """All values less than or equal the given value."""
-  totalPrice_lte: Int
-
-  """All values greater than the given value."""
-  totalPrice_gt: Int
-
-  """All values greater than or equal the given value."""
-  totalPrice_gte: Int
 }
 
 type InvoiceSubscriptionPayload {
@@ -1022,55 +533,14 @@ input InvoiceUpdateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-  user: UserUpdateOneWithoutInvoicesInput
+  user: UserUpdateOneInput
   vessel: VesselUpdateOneInput
-}
-
-input InvoiceUpdateManyDataInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
 }
 
 input InvoiceUpdateManyMutationInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-}
-
-input InvoiceUpdateManyWithoutUserInput {
-  create: [InvoiceCreateWithoutUserInput!]
-  connect: [InvoiceWhereUniqueInput!]
-  set: [InvoiceWhereUniqueInput!]
-  disconnect: [InvoiceWhereUniqueInput!]
-  delete: [InvoiceWhereUniqueInput!]
-  update: [InvoiceUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [InvoiceUpdateManyWithWhereNestedInput!]
-  deleteMany: [InvoiceScalarWhereInput!]
-  upsert: [InvoiceUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input InvoiceUpdateManyWithWhereNestedInput {
-  where: InvoiceScalarWhereInput!
-  data: InvoiceUpdateManyDataInput!
-}
-
-input InvoiceUpdateWithoutUserDataInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
-  vessel: VesselUpdateOneInput
-}
-
-input InvoiceUpdateWithWhereUniqueWithoutUserInput {
-  where: InvoiceWhereUniqueInput!
-  data: InvoiceUpdateWithoutUserDataInput!
-}
-
-input InvoiceUpsertWithWhereUniqueWithoutUserInput {
-  where: InvoiceWhereUniqueInput!
-  update: InvoiceUpdateWithoutUserDataInput!
-  create: InvoiceCreateWithoutUserInput!
 }
 
 input InvoiceWhereInput {
@@ -1239,36 +709,36 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
   createInvoice(data: InvoiceCreateInput!): Invoice!
   createQuote(data: QuoteCreateInput!): Quote!
   createCourse(data: CourseCreateInput!): Course!
   createVessel(data: VesselCreateInput!): Vessel!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  createUser(data: UserCreateInput!): User!
   updateInvoice(data: InvoiceUpdateInput!, where: InvoiceWhereUniqueInput!): Invoice
   updateQuote(data: QuoteUpdateInput!, where: QuoteWhereUniqueInput!): Quote
   updateCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
   updateVessel(data: VesselUpdateInput!, where: VesselWhereUniqueInput!): Vessel
-  deleteUser(where: UserWhereUniqueInput!): User
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deleteInvoice(where: InvoiceWhereUniqueInput!): Invoice
   deleteQuote(where: QuoteWhereUniqueInput!): Quote
   deleteCourse(where: CourseWhereUniqueInput!): Course
   deleteVessel(where: VesselWhereUniqueInput!): Vessel
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
   upsertInvoice(where: InvoiceWhereUniqueInput!, create: InvoiceCreateInput!, update: InvoiceUpdateInput!): Invoice!
   upsertQuote(where: QuoteWhereUniqueInput!, create: QuoteCreateInput!, update: QuoteUpdateInput!): Quote!
   upsertCourse(where: CourseWhereUniqueInput!, create: CourseCreateInput!, update: CourseUpdateInput!): Course!
   upsertVessel(where: VesselWhereUniqueInput!, create: VesselCreateInput!, update: VesselUpdateInput!): Vessel!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   updateManyInvoices(data: InvoiceUpdateManyMutationInput!, where: InvoiceWhereInput): BatchPayload!
   updateManyQuotes(data: QuoteUpdateManyMutationInput!, where: QuoteWhereInput): BatchPayload!
   updateManyCourses(data: CourseUpdateManyMutationInput!, where: CourseWhereInput): BatchPayload!
   updateManyVessels(data: VesselUpdateManyMutationInput!, where: VesselWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyInvoices(where: InvoiceWhereInput): BatchPayload!
   deleteManyQuotes(where: QuoteWhereInput): BatchPayload!
   deleteManyCourses(where: CourseWhereInput): BatchPayload!
   deleteManyVessels(where: VesselWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1299,21 +769,21 @@ type PageInfo {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
   quotes(where: QuoteWhereInput, orderBy: QuoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quote]!
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course]!
   vessels(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vessel]!
-  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   invoice(where: InvoiceWhereUniqueInput!): Invoice
   quote(where: QuoteWhereUniqueInput!): Quote
   course(where: CourseWhereUniqueInput!): Course
   vessel(where: VesselWhereUniqueInput!): Vessel
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user(where: UserWhereUniqueInput!): User
   invoicesConnection(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InvoiceConnection!
   quotesConnection(where: QuoteWhereInput, orderBy: QuoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuoteConnection!
   coursesConnection(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourseConnection!
   vesselsConnection(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VesselConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1345,19 +815,7 @@ input QuoteCreateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-  user: UserCreateOneWithoutQuotesInput
-  vessel: VesselCreateOneInput
-}
-
-input QuoteCreateManyWithoutUserInput {
-  create: [QuoteCreateWithoutUserInput!]
-  connect: [QuoteWhereUniqueInput!]
-}
-
-input QuoteCreateWithoutUserInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
+  user: UserCreateOneInput
   vessel: VesselCreateOneInput
 }
 
@@ -1390,159 +848,6 @@ type QuotePreviousValues {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-}
-
-input QuoteScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [QuoteScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [QuoteScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [QuoteScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  charterStartDate: String
-
-  """All values that are not equal to given value."""
-  charterStartDate_not: String
-
-  """All values that are contained in given list."""
-  charterStartDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterStartDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterStartDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterStartDate_lte: String
-
-  """All values greater than the given value."""
-  charterStartDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterStartDate_gte: String
-
-  """All values containing the given string."""
-  charterStartDate_contains: String
-
-  """All values not containing the given string."""
-  charterStartDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterStartDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterStartDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterStartDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterStartDate_not_ends_with: String
-  charterEndDate: String
-
-  """All values that are not equal to given value."""
-  charterEndDate_not: String
-
-  """All values that are contained in given list."""
-  charterEndDate_in: [String!]
-
-  """All values that are not contained in given list."""
-  charterEndDate_not_in: [String!]
-
-  """All values less than the given value."""
-  charterEndDate_lt: String
-
-  """All values less than or equal the given value."""
-  charterEndDate_lte: String
-
-  """All values greater than the given value."""
-  charterEndDate_gt: String
-
-  """All values greater than or equal the given value."""
-  charterEndDate_gte: String
-
-  """All values containing the given string."""
-  charterEndDate_contains: String
-
-  """All values not containing the given string."""
-  charterEndDate_not_contains: String
-
-  """All values starting with the given string."""
-  charterEndDate_starts_with: String
-
-  """All values not starting with the given string."""
-  charterEndDate_not_starts_with: String
-
-  """All values ending with the given string."""
-  charterEndDate_ends_with: String
-
-  """All values not ending with the given string."""
-  charterEndDate_not_ends_with: String
-  totalPrice: Int
-
-  """All values that are not equal to given value."""
-  totalPrice_not: Int
-
-  """All values that are contained in given list."""
-  totalPrice_in: [Int!]
-
-  """All values that are not contained in given list."""
-  totalPrice_not_in: [Int!]
-
-  """All values less than the given value."""
-  totalPrice_lt: Int
-
-  """All values less than or equal the given value."""
-  totalPrice_lte: Int
-
-  """All values greater than the given value."""
-  totalPrice_gt: Int
-
-  """All values greater than or equal the given value."""
-  totalPrice_gte: Int
 }
 
 type QuoteSubscriptionPayload {
@@ -1588,55 +893,14 @@ input QuoteUpdateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-  user: UserUpdateOneWithoutQuotesInput
+  user: UserUpdateOneInput
   vessel: VesselUpdateOneInput
-}
-
-input QuoteUpdateManyDataInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
 }
 
 input QuoteUpdateManyMutationInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
-}
-
-input QuoteUpdateManyWithoutUserInput {
-  create: [QuoteCreateWithoutUserInput!]
-  connect: [QuoteWhereUniqueInput!]
-  set: [QuoteWhereUniqueInput!]
-  disconnect: [QuoteWhereUniqueInput!]
-  delete: [QuoteWhereUniqueInput!]
-  update: [QuoteUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [QuoteUpdateManyWithWhereNestedInput!]
-  deleteMany: [QuoteScalarWhereInput!]
-  upsert: [QuoteUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input QuoteUpdateManyWithWhereNestedInput {
-  where: QuoteScalarWhereInput!
-  data: QuoteUpdateManyDataInput!
-}
-
-input QuoteUpdateWithoutUserDataInput {
-  charterStartDate: String
-  charterEndDate: String
-  totalPrice: Int
-  vessel: VesselUpdateOneInput
-}
-
-input QuoteUpdateWithWhereUniqueWithoutUserInput {
-  where: QuoteWhereUniqueInput!
-  data: QuoteUpdateWithoutUserDataInput!
-}
-
-input QuoteUpsertWithWhereUniqueWithoutUserInput {
-  where: QuoteWhereUniqueInput!
-  update: QuoteUpdateWithoutUserDataInput!
-  create: QuoteCreateWithoutUserInput!
 }
 
 input QuoteWhereInput {
@@ -1799,26 +1063,24 @@ input QuoteWhereUniqueInput {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   invoice(where: InvoiceSubscriptionWhereInput): InvoiceSubscriptionPayload
   quote(where: QuoteSubscriptionWhereInput): QuoteSubscriptionPayload
   course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
   vessel(where: VesselSubscriptionWhereInput): VesselSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User implements Node {
   id: ID!
   firstName: String!
   lastName: String!
+  phone: String!
   email: String!
   address1: String
   address2: String
   city: String
   state: String
   zip: Int
-  invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice!]
-  quotes(where: QuoteWhereInput, orderBy: QuoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quote!]
-  courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
 }
 
 """A connection to a list of items."""
@@ -1834,69 +1096,23 @@ type UserConnection {
 input UserCreateInput {
   firstName: String!
   lastName: String!
+  phone: String!
   email: String!
   address1: String
   address2: String
   city: String
   state: String
   zip: Int
-  invoices: InvoiceCreateManyWithoutUserInput
-  quotes: QuoteCreateManyWithoutUserInput
-  courses: CourseCreateManyWithoutUsersInput
 }
 
-input UserCreateManyWithoutCoursesInput {
-  create: [UserCreateWithoutCoursesInput!]
+input UserCreateManyInput {
+  create: [UserCreateInput!]
   connect: [UserWhereUniqueInput!]
 }
 
-input UserCreateOneWithoutInvoicesInput {
-  create: UserCreateWithoutInvoicesInput
+input UserCreateOneInput {
+  create: UserCreateInput
   connect: UserWhereUniqueInput
-}
-
-input UserCreateOneWithoutQuotesInput {
-  create: UserCreateWithoutQuotesInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutCoursesInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  invoices: InvoiceCreateManyWithoutUserInput
-  quotes: QuoteCreateManyWithoutUserInput
-}
-
-input UserCreateWithoutInvoicesInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  quotes: QuoteCreateManyWithoutUserInput
-  courses: CourseCreateManyWithoutUsersInput
-}
-
-input UserCreateWithoutQuotesInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  invoices: InvoiceCreateManyWithoutUserInput
-  courses: CourseCreateManyWithoutUsersInput
 }
 
 """An edge in a connection."""
@@ -1915,6 +1131,8 @@ enum UserOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
+  phone_ASC
+  phone_DESC
   email_ASC
   email_DESC
   address1_ASC
@@ -1937,6 +1155,7 @@ type UserPreviousValues {
   id: ID!
   firstName: String!
   lastName: String!
+  phone: String!
   email: String!
   address1: String
   address2: String
@@ -2074,6 +1293,46 @@ input UserScalarWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
+  phone: String
+
+  """All values that are not equal to given value."""
+  phone_not: String
+
+  """All values that are contained in given list."""
+  phone_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone_not_in: [String!]
+
+  """All values less than the given value."""
+  phone_lt: String
+
+  """All values less than or equal the given value."""
+  phone_lte: String
+
+  """All values greater than the given value."""
+  phone_gt: String
+
+  """All values greater than or equal the given value."""
+  phone_gte: String
+
+  """All values containing the given string."""
+  phone_contains: String
+
+  """All values not containing the given string."""
+  phone_not_contains: String
+
+  """All values starting with the given string."""
+  phone_starts_with: String
+
+  """All values not starting with the given string."""
+  phone_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone_ends_with: String
+
+  """All values not ending with the given string."""
+  phone_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -2337,52 +1596,64 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
-input UserUpdateInput {
+input UserUpdateDataInput {
   firstName: String
   lastName: String
+  phone: String
   email: String
   address1: String
   address2: String
   city: String
   state: String
   zip: Int
-  invoices: InvoiceUpdateManyWithoutUserInput
-  quotes: QuoteUpdateManyWithoutUserInput
-  courses: CourseUpdateManyWithoutUsersInput
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  phone: String
+  email: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: Int
 }
 
 input UserUpdateManyDataInput {
   firstName: String
   lastName: String
+  phone: String
   email: String
   address1: String
   address2: String
   city: String
   state: String
   zip: Int
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserScalarWhereInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
 }
 
 input UserUpdateManyMutationInput {
   firstName: String
   lastName: String
+  phone: String
   email: String
   address1: String
   address2: String
   city: String
   state: String
   zip: Int
-}
-
-input UserUpdateManyWithoutCoursesInput {
-  create: [UserCreateWithoutCoursesInput!]
-  connect: [UserWhereUniqueInput!]
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  delete: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutCoursesInput!]
-  updateMany: [UserUpdateManyWithWhereNestedInput!]
-  deleteMany: [UserScalarWhereInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutCoursesInput!]
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -2390,82 +1661,29 @@ input UserUpdateManyWithWhereNestedInput {
   data: UserUpdateManyDataInput!
 }
 
-input UserUpdateOneWithoutInvoicesInput {
-  create: UserCreateWithoutInvoicesInput
+input UserUpdateOneInput {
+  create: UserCreateInput
   connect: UserWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: UserUpdateWithoutInvoicesDataInput
-  upsert: UserUpsertWithoutInvoicesInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
 }
 
-input UserUpdateOneWithoutQuotesInput {
-  create: UserCreateWithoutQuotesInput
-  connect: UserWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: UserUpdateWithoutQuotesDataInput
-  upsert: UserUpsertWithoutQuotesInput
-}
-
-input UserUpdateWithoutCoursesDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  invoices: InvoiceUpdateManyWithoutUserInput
-  quotes: QuoteUpdateManyWithoutUserInput
-}
-
-input UserUpdateWithoutInvoicesDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  quotes: QuoteUpdateManyWithoutUserInput
-  courses: CourseUpdateManyWithoutUsersInput
-}
-
-input UserUpdateWithoutQuotesDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  address1: String
-  address2: String
-  city: String
-  state: String
-  zip: Int
-  invoices: InvoiceUpdateManyWithoutUserInput
-  courses: CourseUpdateManyWithoutUsersInput
-}
-
-input UserUpdateWithWhereUniqueWithoutCoursesInput {
+input UserUpdateWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput!
-  data: UserUpdateWithoutCoursesDataInput!
+  data: UserUpdateDataInput!
 }
 
-input UserUpsertWithoutInvoicesInput {
-  update: UserUpdateWithoutInvoicesDataInput!
-  create: UserCreateWithoutInvoicesInput!
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
-input UserUpsertWithoutQuotesInput {
-  update: UserUpdateWithoutQuotesDataInput!
-  create: UserCreateWithoutQuotesInput!
-}
-
-input UserUpsertWithWhereUniqueWithoutCoursesInput {
+input UserUpsertWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput!
-  update: UserUpdateWithoutCoursesDataInput!
-  create: UserCreateWithoutCoursesInput!
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -2597,6 +1815,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
+  phone: String
+
+  """All values that are not equal to given value."""
+  phone_not: String
+
+  """All values that are contained in given list."""
+  phone_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone_not_in: [String!]
+
+  """All values less than the given value."""
+  phone_lt: String
+
+  """All values less than or equal the given value."""
+  phone_lte: String
+
+  """All values greater than the given value."""
+  phone_gt: String
+
+  """All values greater than or equal the given value."""
+  phone_gte: String
+
+  """All values containing the given string."""
+  phone_contains: String
+
+  """All values not containing the given string."""
+  phone_not_contains: String
+
+  """All values starting with the given string."""
+  phone_starts_with: String
+
+  """All values not starting with the given string."""
+  phone_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone_ends_with: String
+
+  """All values not ending with the given string."""
+  phone_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -2819,15 +2077,6 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   zip_gte: Int
-  invoices_every: InvoiceWhereInput
-  invoices_some: InvoiceWhereInput
-  invoices_none: InvoiceWhereInput
-  quotes_every: QuoteWhereInput
-  quotes_some: QuoteWhereInput
-  quotes_none: QuoteWhereInput
-  courses_every: CourseWhereInput
-  courses_some: CourseWhereInput
-  courses_none: CourseWhereInput
 }
 
 input UserWhereUniqueInput {

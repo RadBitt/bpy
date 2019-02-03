@@ -2,15 +2,13 @@ type User {
 	id: ID! @unique
 	firstName: String!
 	lastName: String!
+	phone: String!
 	email: String!
 	address1: String
 	address2: String
 	city: String
 	state: String
 	zip: Int
-	invoices: [Invoice]
-	quotes: [Quote]
-	courses: [Course]
 }
 
 type Invoice {
@@ -46,7 +44,7 @@ type Course {
 	charterStartDate: String
 	charterEndDate: String
 	totalPrice: Int
-	vessel: Vessel
 	participants: Int
+	vessel: Vessel
 	users: [User]
 }

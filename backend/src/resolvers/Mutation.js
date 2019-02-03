@@ -8,11 +8,23 @@ const Mutations = {
 		return user;
 	},
 	async createInvoice(parent, args, ctx, info) {
+		const { user, vessel } = ctx.request.body.variables;
 		const invoice = await ctx.db.mutation.createInvoice({
 			data: {
+				user: {
+					connect: {
+						id: user
+					},
+				},
+				vessel: {
+					connect: {
+						id: vessel
+					},
+				},
 				...args
 			}
 		}, info);
+		console.log(invoice);
 		return invoice;
 	},
 	async createQuote(parent, args, ctx, info) {
