@@ -30,7 +30,10 @@ class Invoices extends React.Component {
 					{({data, error, loading}) => {
 						if(loading) return <p>Loading...</p>
 						if(error) return <p>Error: {error.message}</p>
-						return <table className="table table-striped invoices-table">
+						return <div>
+						<h2>Invoices</h2>
+						<p>To create a new invoice, begin by selecting a client from the clients page.</p>
+						<table className="table table-striped invoices-table">
 							<thead className="thead-dark">
 								<tr>
 									<th>+</th>
@@ -39,8 +42,6 @@ class Invoices extends React.Component {
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>Total Price</th>
-									<th>Edit</th>
-									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -57,13 +58,11 @@ class Invoices extends React.Component {
 								<td>{invoice.charterStartDate}</td>
 								<td>{invoice.charterEndDate}</td>
 								<td>{formatMoney(invoice.totalPrice)}</td>
-								<td><Link href={{
-									pathname: 'update', query: {id: invoice.id}}}><a>edit</a></Link></td>
-								<td><Link href={{pathname: 'update', query: {id: invoice.id}}}><a>delete</a></Link></td>
 								</tr>
 							)}
 							</tbody>
 						</table>
+						</div>
 					}}
 				</Query>
 			</div>

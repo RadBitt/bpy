@@ -18,6 +18,8 @@ type Mutation {
 		totalPrice: Int
 	): Invoice!
 	createQuote(
+		tempName: String
+		tempEmail: String
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
@@ -41,12 +43,13 @@ type Mutation {
 type Query {
 	users: [User]!
 	user(where: UserWhereUniqueInput!): User
-	invoices(where: InvoiceWhereInput): [Invoice!]
+	 invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
 	invoice(where: InvoiceWhereUniqueInput!): Invoice
 	quotes: [Quote!]
 	quote(where: QuoteWhereUniqueInput!): Quote
-	vessels: [Vessel!]
+	vessels(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vessel]!
 	vessel(where: VesselWhereUniqueInput!): Vessel
 	courses: [Course!]
 	course(where: CourseWhereUniqueInput!): Course
+	monthInvoices(where: InvoiceWhereInput): [Invoice!]
 }

@@ -24,6 +24,8 @@ type Quote {
 	id: ID! @unique
 	user: User
 	vessel: Vessel
+	tempName: String
+	tempEmail: String
 	charterStartDate: String
 	charterEndDate: String
 	totalPrice: Int

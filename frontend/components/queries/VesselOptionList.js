@@ -24,10 +24,10 @@ class VesselOptionList extends React.Component {
 					return <select 
 						className={this.props.className}
 				    	id={this.props.id}
-				    	name={this.props.vesselName}
+				    	name={this.props.name}
 				    	required
 				    	defaultValue={this.props.value}
-				    	onChange={this.props.handleVesselChange}
+				    	onChange={this.props.handleChange}
 				    >
 				    	<option key={'0'} value={'null'}>Please choose a vessel.</option>
 						{data.vessels.map(vessel => 

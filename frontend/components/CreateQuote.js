@@ -10,15 +10,15 @@ import Error from './ErrorMessage';
 
 const CREATE_QUOTE_MUTATION = gql`
 	mutation CREATE_QUOTE_MUTATION(
-		$clientName: String
-		$vesselId: String
+		$tempName: String
+		$tempEmail: String
 		$charterStartDate: String
 		$charterEndDate: String
 		$totalPrice: Int
 	){
 		createQuote(
-		clientName: $clientName
-		vesselId: $vesselId
+		tempName: $tempName
+		tempEmail: $tempEmail
 		charterStartDate: $charterStartDate
 		charterEndDate: $charterEndDate
 		totalPrice: $totalPrice
@@ -31,8 +31,9 @@ const CREATE_QUOTE_MUTATION = gql`
 class CreateQuote extends React.Component {
 
 	state = {
-		clientName: '',
-		vesselId: '',
+		tempName: '',
+		tempEmail: '',
+		vessel: '',
 		charterStartDate: moment()._d,
 		charterEndDate: moment()._d,
 		totalPrice: 0,
@@ -105,24 +106,36 @@ class CreateQuote extends React.Component {
 					<Error error={error} />
 					<fieldset disabled={loading} />
 					<div className="form-group">
-					    <label htmlFor="clientName">Select Client Name</label>
+					    <label htmlFor="tempName">Select Client Name</label>
 					    <input 
 						    type="text" 
 						    className="form-control" 
-						    id="clientName"
-						    name="clientName"			
+						    id="tempName"
+						    name="tempName"			
 						    required
-						    value={this.state.clientName}
+						    value={this.state.tempName}
+						    onChange={this.handleChange}
+					    />
+				 	</div>
+				 	<div className="form-group">
+					    <label htmlFor="tempEmail">Select Client Email</label>
+					    <input 
+						    type="text" 
+						    className="form-control" 
+						    id="tempEmail"
+						    name="tempEmail"			
+						    required
+						    value={this.state.tempEmail}
 						    onChange={this.handleChange}
 					    />
 				 	</div>
 					<div className="form-group">
-					    <label htmlFor="vesselId">Select Charter Vessel</label>
+					    <label htmlFor="vessel">Select Charter Vessel</label>
 					      <VesselOptionList className="form-control" 
-					    	id="vesselId"
-					    	name="vesselId"
-					    	value={this.state.vesselId}
-					    	onChange={this.handleChange}
+					    	id="vessel"
+					    	name="vessel"
+					    	value={this.state.vessel}
+					    	handleChange={this.handleChange}
 					    />
 				 	</div>
 				 	<div className="form-group">

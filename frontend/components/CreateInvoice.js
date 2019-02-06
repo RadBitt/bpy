@@ -44,16 +44,9 @@ class CreateInvoice extends React.Component {
 	}
 
 	handleChange = e => {
-		const {name, type, value } = e.target;
+		const { name, type, value } = e.target;
 		const val = type === 'number' ? parseFloat(value) : value;
 		this.setState({ [name]: val })
-	}
-
-	handleVesselChange = e => {
-		const value = e.target.value;
-		this.setState({ 
-			vessel: value
-		})
 	}
 
 	handleStartDateChange = date => {
@@ -120,7 +113,7 @@ class CreateInvoice extends React.Component {
 					    	id="vessel"
 					    	name="vessel"
 					    	value={this.state.vessel}
-					    	handleVesselChange={this.handleVesselChange}
+					    	handleChange={this.handleChange}
 					    />
 				 	</div>
 				 	<div className="form-group">

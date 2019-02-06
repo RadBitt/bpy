@@ -28,8 +28,14 @@ const Mutations = {
 		return invoice;
 	},
 	async createQuote(parent, args, ctx, info) {
+		const { vessel } = ctx.request.body.variables;
 		const quote = await ctx.db.mutation.createQuote({
 			data: {
+				vessel: {
+					connect: {
+						id: vessel
+					},
+				},
 				...args
 			}
 		}, info);

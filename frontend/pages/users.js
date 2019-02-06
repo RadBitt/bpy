@@ -22,12 +22,14 @@ class Users extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<p>Hey! This is a list of clients. <Link href="/newUser"><a>Create a new client</a></Link></p>
 				<Query query={ALL_USERS_QUERY}>
 					{({data, error, loading}) => {
 						if(loading) return <p>Loading...</p>
 						if(error) return <p>Error: {error.message}</p>
-						return <table className="table table-striped users-table">
+						return <div>
+						<h2>Clients</h2>
+						<p><Link href="/newUser"><a>Create a new client</a></Link></p>
+						<table className="table table-striped users-table">
 							<thead className="thead-dark">
 								<tr>
 									<th>+</th>
@@ -38,8 +40,6 @@ class Users extends React.Component {
 									<th>City</th>
 									<th>State</th>
 									<th>Zip</th>
-									<th>Edit</th>
-									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -58,13 +58,11 @@ class Users extends React.Component {
 								<td>{user.city}</td>
 								<td>{user.state}</td>
 								<td>{user.zip}</td>
-								<td><Link href={{
-									pathname: 'update', query: {id: user.id}}}><a>edit</a></Link></td>
-								<td><Link href={{pathname: 'update', query: {id: user.id}}}><a>delete</a></Link></td>
 								</tr>
 							)}
 							</tbody>
 						</table>
+						</div>
 					}}
 				</Query>
 			</div>

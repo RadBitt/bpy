@@ -6,11 +6,15 @@ import Error from './ErrorMessage';
 const SINGLE_QUOTE_QUERY = gql`
 	query SINGLE_QUOTE_QUERY($id: ID!) {
 		quote(where: {id: $id}) {
-			user
-			vessel
+			id
+			tempName
+			tempEmail
 			charterStartDate
 			charterEndDate
 			totalPrice
+			vessel {
+				vesselName
+			}
 		}
 	}
 `;
@@ -30,7 +34,31 @@ class SingleQuote extends React.Component {
 						if(error) return <Error error={error} />;
 						if(loading) return <p>Loading...</p>;
 						if(!data.quote) return <p>No quote found for {this.props.id}</p>
-						return <p>Single Quote</p>
+						return <div>
+							<h2>Quote: {data.quote.id}</h2>
+							<table className="table table-striped quotes-table">
+							<thead className="thead-dark">
+								<tr>
+									<th>Client</th>
+									<th>Email</th>
+									<th>Vessel</th>
+									<th>Start Date</th>
+									<th>End Date</th>
+									<th>Total Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{data.quote.tempName}</td>
+									<td>{data.quote.tempEmail}</td>
+									<td>{data.quote.vessel.vesselName}</td>
+									<td>{data.quote.charterStartDate}</td>
+									<td>{data.quote.charterEndDate}</td>
+									<td>{data.quote.totalPrice}</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
 					}
 				}
 			</Query>

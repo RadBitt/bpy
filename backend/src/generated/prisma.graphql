@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/leonardo-m-hernandez/bpy-desktop-mysql/dev
-# timestamp: Sun Feb 03 2019 03:52:03 GMT-0800 (Pacific Standard Time)
+# timestamp: Sun Feb 03 2019 11:39:31 GMT-0800 (Pacific Standard Time)
 
 type AggregateCourse {
   count: Int!
@@ -796,6 +796,8 @@ type Quote implements Node {
   id: ID!
   user: User
   vessel: Vessel
+  tempName: String
+  tempEmail: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -812,6 +814,8 @@ type QuoteConnection {
 }
 
 input QuoteCreateInput {
+  tempName: String
+  tempEmail: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -831,6 +835,10 @@ type QuoteEdge {
 enum QuoteOrderByInput {
   id_ASC
   id_DESC
+  tempName_ASC
+  tempName_DESC
+  tempEmail_ASC
+  tempEmail_DESC
   charterStartDate_ASC
   charterStartDate_DESC
   charterEndDate_ASC
@@ -845,6 +853,8 @@ enum QuoteOrderByInput {
 
 type QuotePreviousValues {
   id: ID!
+  tempName: String
+  tempEmail: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -890,6 +900,8 @@ input QuoteSubscriptionWhereInput {
 }
 
 input QuoteUpdateInput {
+  tempName: String
+  tempEmail: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -898,6 +910,8 @@ input QuoteUpdateInput {
 }
 
 input QuoteUpdateManyMutationInput {
+  tempName: String
+  tempEmail: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
@@ -952,6 +966,86 @@ input QuoteWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  tempName: String
+
+  """All values that are not equal to given value."""
+  tempName_not: String
+
+  """All values that are contained in given list."""
+  tempName_in: [String!]
+
+  """All values that are not contained in given list."""
+  tempName_not_in: [String!]
+
+  """All values less than the given value."""
+  tempName_lt: String
+
+  """All values less than or equal the given value."""
+  tempName_lte: String
+
+  """All values greater than the given value."""
+  tempName_gt: String
+
+  """All values greater than or equal the given value."""
+  tempName_gte: String
+
+  """All values containing the given string."""
+  tempName_contains: String
+
+  """All values not containing the given string."""
+  tempName_not_contains: String
+
+  """All values starting with the given string."""
+  tempName_starts_with: String
+
+  """All values not starting with the given string."""
+  tempName_not_starts_with: String
+
+  """All values ending with the given string."""
+  tempName_ends_with: String
+
+  """All values not ending with the given string."""
+  tempName_not_ends_with: String
+  tempEmail: String
+
+  """All values that are not equal to given value."""
+  tempEmail_not: String
+
+  """All values that are contained in given list."""
+  tempEmail_in: [String!]
+
+  """All values that are not contained in given list."""
+  tempEmail_not_in: [String!]
+
+  """All values less than the given value."""
+  tempEmail_lt: String
+
+  """All values less than or equal the given value."""
+  tempEmail_lte: String
+
+  """All values greater than the given value."""
+  tempEmail_gt: String
+
+  """All values greater than or equal the given value."""
+  tempEmail_gte: String
+
+  """All values containing the given string."""
+  tempEmail_contains: String
+
+  """All values not containing the given string."""
+  tempEmail_not_contains: String
+
+  """All values starting with the given string."""
+  tempEmail_starts_with: String
+
+  """All values not starting with the given string."""
+  tempEmail_not_starts_with: String
+
+  """All values ending with the given string."""
+  tempEmail_ends_with: String
+
+  """All values not ending with the given string."""
+  tempEmail_not_ends_with: String
   charterStartDate: String
 
   """All values that are not equal to given value."""
