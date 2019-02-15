@@ -17,3 +17,22 @@ li.react-datepicker__time-list-item {
 .selectElement {
 	margin: 10px;
 }
+
+.grouped-charter-invoice {
+	text-align: center;
+	background-color: lightgreen;
+}
+
+.grouped-charter-invoice a {
+	padding: 20px 20px;
+}
+
+.weekend-day-blank {
+	text-align: center;
+	background-color: grey;
+}
+
+.week-day-blank {
+	text-align: center;
+	background-color: white;
+}

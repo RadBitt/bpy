@@ -15,6 +15,7 @@ type Invoice {
 	id: ID! @unique
 	user: User
 	vessel: Vessel
+	charterYear: String
 	charterStartDate: String
 	charterEndDate: String
 	totalPrice: Int

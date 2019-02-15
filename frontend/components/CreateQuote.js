@@ -33,9 +33,9 @@ class CreateQuote extends React.Component {
 	state = {
 		tempName: '',
 		tempEmail: '',
-		vessel: '',
-		charterStartDate: moment()._d,
-		charterEndDate: moment()._d,
+		vessel: this.props.vesselId,
+		charterStartDate: this.props.startDate,
+		charterEndDate: this.props.endDate,
 		totalPrice: 0,
 		displayPrice: 0
 	}
@@ -106,7 +106,7 @@ class CreateQuote extends React.Component {
 					<Error error={error} />
 					<fieldset disabled={loading} />
 					<div className="form-group">
-					    <label htmlFor="tempName">Select Client Name</label>
+					    <label htmlFor="tempName">Enter Client Name</label>
 					    <input 
 						    type="text" 
 						    className="form-control" 
@@ -118,7 +118,7 @@ class CreateQuote extends React.Component {
 					    />
 				 	</div>
 				 	<div className="form-group">
-					    <label htmlFor="tempEmail">Select Client Email</label>
+					    <label htmlFor="tempEmail">Enter Client Email</label>
 					    <input 
 						    type="text" 
 						    className="form-control" 

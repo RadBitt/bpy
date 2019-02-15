@@ -4,7 +4,7 @@ import moment from 'moment';
 class CalendarYearsSelect extends React.Component {
 
 	startYear = 2010;
-	upToYear = this.props.year + 2;
+	upToYear = this.props.year + 3;
 
 	render() {
 

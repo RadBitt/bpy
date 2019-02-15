@@ -13,6 +13,7 @@ type Mutation {
 		zip: Int
 	): User!
 	createInvoice(
+		charterYear: String
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
@@ -43,7 +44,7 @@ type Mutation {
 type Query {
 	users: [User]!
 	user(where: UserWhereUniqueInput!): User
-	 invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
+	invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
 	invoice(where: InvoiceWhereUniqueInput!): Invoice
 	quotes: [Quote!]
 	quote(where: QuoteWhereUniqueInput!): Quote

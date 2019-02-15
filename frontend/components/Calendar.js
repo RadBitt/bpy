@@ -49,32 +49,34 @@ class Calendar extends React.Component {
 						if(loading) return <p>Loading...</p>
 						if(error) return <p>Error: {error.message}</p>
 						return <div>
-						<h2>Calendar</h2>
-						<div className="row">
-							<div className="col-sm"></div>
-							<div className="col-sm">
-							<CalendarYearsSelect 
-								year={this.state.moment.year()}
-								handleYearChange={this.handleYearChange}
-							/>
-							<CalendarMonthsSelect 
-								month={this.state.moment.month()}
-								handleMonthChange={this.handleMonthChange}
-							/>
+							<h2>Calendar</h2>
+							<div className="row">
+								<div className="col-sm"></div>
+								<div className="col-sm">
+								<CalendarYearsSelect 
+									year={this.state.moment.year()}
+									handleYearChange={this.handleYearChange}
+								/>
+								<CalendarMonthsSelect 
+									month={this.state.moment.month()}
+									handleMonthChange={this.handleMonthChange}
+								/>
+								</div>
+								<div className="col-sm"></div>
 							</div>
-							<div className="col-sm"></div>
-						</div>
-						<table className="table">
-							<CalendarHeaderFields 
-								month={this.state.moment.format('MMMM')}
-								dateObj={dateObj}
-								dates={dates}
-							/>
-							<CalendarBodyFields 
-								vessels={data.vessels}
-								moment={this.state.moment}
-							/>
-						</table>
+							<table className="table">
+								<CalendarHeaderFields 
+									month={this.state.moment.format('MMMM')}
+									dateObj={dateObj}
+									dates={dates}
+								/>
+								<CalendarBodyFields 
+									vessels={data.vessels}
+									month={this.state.moment.format('MMMM')}
+									dateObj={dateObj}
+									dates={dates}
+								/>
+							</table>
 						</div>
 					}}
 				</Query>

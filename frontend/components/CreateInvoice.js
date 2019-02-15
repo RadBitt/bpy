@@ -11,11 +11,13 @@ import Error from './ErrorMessage';
 
 const CREATE_INVOICE_MUTATION = gql`
 	mutation CREATE_INVOICE_MUTATION(
+		$charterYear: String
 		$charterStartDate: String
 		$charterEndDate: String
 		$totalPrice: Int
 	){
 		createInvoice(
+		charterYear: $charterYear
 		charterStartDate: $charterStartDate
 		charterEndDate: $charterEndDate
 		totalPrice: $totalPrice
@@ -50,7 +52,9 @@ class CreateInvoice extends React.Component {
 	}
 
 	handleStartDateChange = date => {
+		const day = moment(date);
 	    this.setState({
+	      charterYear: day.year(),
 	      charterStartDate: date,
 	      charterEndDate: date
 	    });
