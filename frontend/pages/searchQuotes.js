@@ -1,10 +1,9 @@
 import React from 'react';
-import SingleQuote from '../components/SingleQuote';
-import SearchUsersResults from '../components/SearchUsersResults';
-import SearchUsersForm from '../components/SearchUsersForm';
+import SearchQuotesResults from '../components/SearchQuotesResults';
+import SearchQuotesForm from '../components/SearchQuotesForm';
 import Link from 'next/link';
 
-class Quote extends React.Component {
+class SearchQuotes extends React.Component {
 
 	state = {
 		search: false,
@@ -30,24 +29,22 @@ class Quote extends React.Component {
 
 	render() {
 
-		let searchSwitch = <SearchUsersForm handleSubmit={this.handleSubmit}/>
+		let searchSwitch = <SearchQuotesForm handleSubmit={this.handleSubmit}/>
 
 		if (this.state.search) 
-			searchSwitch = <SearchUsersResults
+			searchSwitch = <SearchQuotesResults
 								id={this.props.query.id} 
 								searchTerm={this.state.searchTerm}
 								resetSearch={this.resetSearch}
 							/>
+
 		return(
 			<div className="container">
-				<SingleQuote id={this.props.query.id} />
-				<h5>Finalize this quote by adding a client below. 
-				Once you choose a client, you will be directed to create a final invoice. 
-				The information here will be carried on to it.</h5>
+				<h2>Search Quotes</h2>
 				{searchSwitch}
 			</div>
 		);
 	}
 }
 
-export default Quote
+export default SearchQuotes

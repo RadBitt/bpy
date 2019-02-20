@@ -28,7 +28,10 @@ class Users extends React.Component {
 						if(error) return <p>Error: {error.message}</p>
 						return <div>
 						<h2>Clients</h2>
-						<p><Link href="/newUser"><a>Create a new client</a></Link></p>
+						<ul className="list-inline">
+							<li><Link href="/newUser"><a>Create a new client</a></Link></li>
+							<li><Link href="/searchUsers"><a>Search for a client</a></Link></li>
+						</ul>
 						<table className="table table-striped users-table">
 							<thead className="thead-dark">
 								<tr>

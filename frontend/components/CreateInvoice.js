@@ -33,6 +33,7 @@ class CreateInvoice extends React.Component {
 	state = {
 		user: '',
 		vessel: '',
+		excludedDates: [],
 		charterStartDate: moment()._d,
 		charterEndDate: moment()._d,
 		totalPrice: 0,
@@ -48,7 +49,14 @@ class CreateInvoice extends React.Component {
 	handleChange = e => {
 		const { name, type, value } = e.target;
 		const val = type === 'number' ? parseFloat(value) : value;
-		this.setState({ [name]: val })
+		if (name === 'vessel') {
+			this.setState({ 
+				[name]: val,
+				excludedDates: this.props.vesselsObj[val]
+			})
+		} else {
+			this.setState({ [name]: val });
+		}
 	}
 
 	handleStartDateChange = date => {
@@ -128,6 +136,7 @@ class CreateInvoice extends React.Component {
 						    startDate={this.state.charterStartDate}
 						    endDate={this.state.charterEndDate}
 						    onChange={this.handleStartDateChange}
+						    excludeDates={this.state.excludedDates}
 						    showTimeSelect
 					    />
 					</div>
@@ -139,6 +148,7 @@ class CreateInvoice extends React.Component {
 						    startDate={this.state.charterStartDate}
 						    endDate={this.state.charterEndDate}
 						    onChange={this.handleEndDateChange}
+						    excludeDates={this.state.excludedDates}
 						    showTimeSelect
 					    />
 					</div>

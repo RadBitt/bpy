@@ -1,8 +1,8 @@
 /* CSS Styles */
 
-/* Invoices Table */
-table .invoices-table {
-
+.list-inline li {
+	display: inline-block;
+	padding-right: 20px;
 }
 
 li.react-datepicker__time-list-item {

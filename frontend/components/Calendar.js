@@ -64,7 +64,7 @@ class Calendar extends React.Component {
 								</div>
 								<div className="col-sm"></div>
 							</div>
-							<table className="table">
+							<table className="table table-striped">
 								<CalendarHeaderFields 
 									month={this.state.moment.format('MMMM')}
 									dateObj={dateObj}

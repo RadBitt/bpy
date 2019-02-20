@@ -17,6 +17,7 @@ type Mutation {
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
+		emailSent: Boolean
 	): Invoice!
 	createQuote(
 		tempName: String
@@ -24,6 +25,7 @@ type Mutation {
 		charterStartDate: String
 		charterEndDate: String
 		totalPrice: Int
+		emailSent: Boolean
 	): Quote!
 	createVessel(
 		vesselName: String
@@ -42,11 +44,11 @@ type Mutation {
 }
 
 type Query {
-	users: [User]!
+	users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
 	user(where: UserWhereUniqueInput!): User
 	invoices(where: InvoiceWhereInput, orderBy: InvoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Invoice]!
 	invoice(where: InvoiceWhereUniqueInput!): Invoice
-	quotes: [Quote!]
+	quotes(where: QuoteWhereInput, orderBy: QuoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quote]!
 	quote(where: QuoteWhereUniqueInput!): Quote
 	vessels(where: VesselWhereInput, orderBy: VesselOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vessel]!
 	vessel(where: VesselWhereUniqueInput!): Vessel

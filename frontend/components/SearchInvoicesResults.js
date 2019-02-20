@@ -2,11 +2,19 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag'; 
 import Link from 'next/link';
+import InvoiceTableHead from './tableStateless/InvoiceTableHead';
 import formatMoney from '../lib/formatMoney'; 
 
-const ALL_INVOICES_QUERY = gql`
-	query ALL_INVOICES_QUERY {
-		invoices {
+const SEARCH_INVOICES_QUERY = gql`
+	query SEARCH_INVOICES_QUERY($searchTerm: String!) {
+		invoices(where: {OR: 
+			[
+				{user: {firstName_contains: $searchTerm}}, 
+				{user: {lastName_contains: $searchTerm}},
+				{user: {phone_contains: $searchTerm}}, 
+				{vessel: {vesselName_contains: $searchTerm}},
+			]
+		}){
 		id
 		user {
 			firstName
@@ -22,30 +30,26 @@ const ALL_INVOICES_QUERY = gql`
 	}
 `;
 
-class Invoices extends React.Component {
+class SearchInvoicesResults extends React.Component {
 	render() {
 		return (
-			<div className="container">
-				<Query query={ALL_INVOICES_QUERY}>
+			<div>
+				<Query 
+					query={SEARCH_INVOICES_QUERY}
+					variables={{
+						searchTerm: this.props.searchTerm
+					}}
+				>
 					{({data, error, loading}) => {
 						if(loading) return <p>Loading...</p>
 						if(error) return <p>Error: {error.message}</p>
 						return <div>
-						<h2>Invoices</h2>
-						<ul className="list-inline">
-							<li><Link href="/searchInvoices"><a>Search for an invoice</a></Link></li>
-						</ul>
+						<p>The invoice(s} below matched your input. <button onClick={this.props.resetSearch}>Search Again</button></p>
+
 						<table className="table table-striped">
 							<thead className="thead-dark">
-								<tr>
-									<th>+</th>
-									<th>Client</th>
-									<th>Vessel</th>
-									<th>Start Date</th>
-									<th>End Date</th>
-									<th>Total Price</th>
-								</tr>
-							</thead>
+								<InvoiceTableHead />
+ 							</thead>
 							<tbody>
 							{data.invoices.map(invoice => 
 								<tr 
@@ -72,4 +76,4 @@ class Invoices extends React.Component {
 	}
 }
 
-export default Invoices
+export default SearchInvoicesResults

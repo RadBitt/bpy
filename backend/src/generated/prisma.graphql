@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/leonardo-m-hernandez/bpy-desktop-mysql/dev
-# timestamp: Thu Feb 14 2019 19:11:14 GMT-0800 (Pacific Standard Time)
+# timestamp: Wed Feb 20 2019 00:38:28 GMT-0800 (Pacific Standard Time)
 
 type AggregateCourse {
   count: Int!
@@ -440,6 +440,7 @@ type Invoice implements Node {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 """A connection to a list of items."""
@@ -457,6 +458,7 @@ input InvoiceCreateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
   user: UserCreateOneInput
   vessel: VesselCreateOneInput
 }
@@ -481,6 +483,8 @@ enum InvoiceOrderByInput {
   charterEndDate_DESC
   totalPrice_ASC
   totalPrice_DESC
+  emailSent_ASC
+  emailSent_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -493,6 +497,7 @@ type InvoicePreviousValues {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 type InvoiceSubscriptionPayload {
@@ -539,6 +544,7 @@ input InvoiceUpdateInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
   user: UserUpdateOneInput
   vessel: VesselUpdateOneInput
 }
@@ -548,6 +554,7 @@ input InvoiceUpdateManyMutationInput {
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 input InvoiceWhereInput {
@@ -741,6 +748,10 @@ input InvoiceWhereInput {
 
   """All values greater than or equal the given value."""
   totalPrice_gte: Int
+  emailSent: Boolean
+
+  """All values that are not equal to given value."""
+  emailSent_not: Boolean
   user: UserWhereInput
   vessel: VesselWhereInput
 }
@@ -845,9 +856,11 @@ type Quote implements Node {
   vessel: Vessel
   tempName: String
   tempEmail: String
+  tempPhone: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 """A connection to a list of items."""
@@ -863,9 +876,11 @@ type QuoteConnection {
 input QuoteCreateInput {
   tempName: String
   tempEmail: String
+  tempPhone: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
   user: UserCreateOneInput
   vessel: VesselCreateOneInput
 }
@@ -886,12 +901,16 @@ enum QuoteOrderByInput {
   tempName_DESC
   tempEmail_ASC
   tempEmail_DESC
+  tempPhone_ASC
+  tempPhone_DESC
   charterStartDate_ASC
   charterStartDate_DESC
   charterEndDate_ASC
   charterEndDate_DESC
   totalPrice_ASC
   totalPrice_DESC
+  emailSent_ASC
+  emailSent_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -902,9 +921,11 @@ type QuotePreviousValues {
   id: ID!
   tempName: String
   tempEmail: String
+  tempPhone: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 type QuoteSubscriptionPayload {
@@ -949,9 +970,11 @@ input QuoteSubscriptionWhereInput {
 input QuoteUpdateInput {
   tempName: String
   tempEmail: String
+  tempPhone: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
   user: UserUpdateOneInput
   vessel: VesselUpdateOneInput
 }
@@ -959,9 +982,11 @@ input QuoteUpdateInput {
 input QuoteUpdateManyMutationInput {
   tempName: String
   tempEmail: String
+  tempPhone: String
   charterStartDate: String
   charterEndDate: String
   totalPrice: Int
+  emailSent: Boolean
 }
 
 input QuoteWhereInput {
@@ -1093,6 +1118,46 @@ input QuoteWhereInput {
 
   """All values not ending with the given string."""
   tempEmail_not_ends_with: String
+  tempPhone: String
+
+  """All values that are not equal to given value."""
+  tempPhone_not: String
+
+  """All values that are contained in given list."""
+  tempPhone_in: [String!]
+
+  """All values that are not contained in given list."""
+  tempPhone_not_in: [String!]
+
+  """All values less than the given value."""
+  tempPhone_lt: String
+
+  """All values less than or equal the given value."""
+  tempPhone_lte: String
+
+  """All values greater than the given value."""
+  tempPhone_gt: String
+
+  """All values greater than or equal the given value."""
+  tempPhone_gte: String
+
+  """All values containing the given string."""
+  tempPhone_contains: String
+
+  """All values not containing the given string."""
+  tempPhone_not_contains: String
+
+  """All values starting with the given string."""
+  tempPhone_starts_with: String
+
+  """All values not starting with the given string."""
+  tempPhone_not_starts_with: String
+
+  """All values ending with the given string."""
+  tempPhone_ends_with: String
+
+  """All values not ending with the given string."""
+  tempPhone_not_ends_with: String
   charterStartDate: String
 
   """All values that are not equal to given value."""
@@ -1195,6 +1260,10 @@ input QuoteWhereInput {
 
   """All values greater than or equal the given value."""
   totalPrice_gte: Int
+  emailSent: Boolean
+
+  """All values that are not equal to given value."""
+  emailSent_not: Boolean
   user: UserWhereInput
   vessel: VesselWhereInput
 }

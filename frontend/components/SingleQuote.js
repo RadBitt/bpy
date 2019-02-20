@@ -39,9 +39,10 @@ class SingleQuote extends React.Component {
 							<table className="table table-striped quotes-table">
 							<thead className="thead-dark">
 								<tr>
-									<th>Client</th>
-									<th>Email</th>
-									<th>Vessel</th>
+									<th>Quote Name</th>
+									<th>Quote Email</th>
+									<th>Quote Phone</th>
+									<th>Vessel Name</th>
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>Total Price</th>
@@ -51,6 +52,7 @@ class SingleQuote extends React.Component {
 								<tr>
 									<td>{data.quote.tempName}</td>
 									<td>{data.quote.tempEmail}</td>
+									<td>{data.quote.tempPhone}</td>
 									<td>{data.quote.vessel.vesselName}</td>
 									<td>{data.quote.charterStartDate}</td>
 									<td>{data.quote.charterEndDate}</td>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import QuoteTableHead from '../components/tableStateless/QuoteTableHead';
 import gql from 'graphql-tag'; 
 import Link from 'next/link';
 import formatMoney from '../lib/formatMoney'; 
@@ -30,18 +31,13 @@ class Quotes extends React.Component {
 						if(error) return <p>Error: {error.message}</p>
 						return <div>
 						<h2>Quotes</h2>
-						<p><Link href="/newQuote"><a>Create a new quote</a></Link></p>
+						<ul className="list-inline">
+							<li><Link href="/newQuote"><a>Create a new quote</a></Link></li>
+							<li><Link href="/searchQuotes"><a>Search for a quote</a></Link></li>
+						</ul>
 						<table className="table table-striped quotes-table">
 							<thead className="thead-dark">
-								<tr>
-									<th>+</th>
-									<th>Client</th>
-									<th>Email</th>
-									<th>Vessel</th>
-									<th>Start Date</th>
-									<th>End Date</th>
-									<th>Total Price</th>
-								</tr>
+								<QuoteTableHead />
 							</thead>
 							<tbody>
 							{data.quotes.map(quote => 
@@ -54,6 +50,7 @@ class Quotes extends React.Component {
 								}}><a>+</a></Link></td>
 								<td>{quote.tempName}</td>
 								<td>{quote.tempEmail}</td>
+								<td>{quote.tempPhone}</td>
 								<td>{quote.vessel.vesselName}</td>
 								<td>{quote.charterStartDate}</td>
 								<td>{quote.charterEndDate}</td>
